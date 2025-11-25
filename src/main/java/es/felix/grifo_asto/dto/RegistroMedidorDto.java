@@ -15,4 +15,11 @@ public class RegistroMedidorDto {
     Double salida;
     String tipo;
     Persona persona;
+
+    public RegistroMedidorDto(Long idRegistro, Double entrada, Double salida, String tipo) {
+        this.idRegistro = idRegistro;
+        this.entrada = entrada;
+        this.salida = salida;
+        this.tipo = tipo;
+    }
 }

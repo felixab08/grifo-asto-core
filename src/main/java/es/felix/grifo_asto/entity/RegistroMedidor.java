@@ -28,4 +28,11 @@ public class RegistroMedidor {
     @ManyToOne
     @JoinColumn(name="id_persona", referencedColumnName = "idPersona")
     private Persona persona;
+
+    public RegistroMedidor(Long idRegistro, Double entrada, Double salida, String tipo) {
+        this.idRegistro = idRegistro;
+        this.entrada = entrada;
+        this.salida = salida;
+        this.tipo = tipo;
+    }
 }

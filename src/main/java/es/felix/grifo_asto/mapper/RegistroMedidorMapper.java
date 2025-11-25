@@ -6,7 +6,7 @@ import es.felix.grifo_asto.entity.RegistroMedidor;
 public class RegistroMedidorMapper {
 
     public static RegistroMedidorDto mapToRegistroDto(RegistroMedidor registroMedidor) {
-        return  new RegistroMedidorDto(
+        return new RegistroMedidorDto(
                 registroMedidor.getIdRegistro(),
                 registroMedidor.getEntrada(),
                 registroMedidor.getSalida(),
@@ -21,6 +21,15 @@ public class RegistroMedidorMapper {
                 registroMedidor.getSalida(),
                 registroMedidor.getTipo(),
                 registroMedidor.getPersona()
+        );
+    }
+
+    public static RegistroMedidorDto mapToRegistroMedidorDtoResponse(RegistroMedidor registroMedidor) {
+        return  new RegistroMedidorDto(
+                registroMedidor.getIdRegistro(),
+                registroMedidor.getEntrada(),
+                registroMedidor.getSalida(),
+                registroMedidor.getTipo()
         );
     }
 }

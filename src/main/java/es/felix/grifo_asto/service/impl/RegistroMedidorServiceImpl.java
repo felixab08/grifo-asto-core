@@ -20,12 +20,12 @@ public class RegistroMedidorServiceImpl implements RegistroMedidorService {
     @Override
     public RegistroMedidorDto crearRegistroMedidor(RegistroMedidorDto registroMedidorDto) {
         RegistroMedidor registroMedidor = RegistroMedidorMapper.mapToRegistroMedidor(registroMedidorDto);
-        return RegistroMedidorMapper.mapToRegistroDto(registroMedidorRepository.save(registroMedidor));
+        return RegistroMedidorMapper.mapToRegistroMedidorDtoResponse(registroMedidorRepository.save(registroMedidor));
     }
 
     @Override
     public List<RegistroMedidorDto> getAllRegistroMedidores() {
         List<RegistroMedidor>  registroMedidores = registroMedidorRepository.findAll();
-        return registroMedidores.stream().map((registro)-> RegistroMedidorMapper.mapToRegistroDto(registro)).collect(Collectors.toList());
+        return registroMedidores.stream().map((registro)-> RegistroMedidorMapper.mapToRegistroMedidorDtoResponse(registro)).collect(Collectors.toList());
     }
 }

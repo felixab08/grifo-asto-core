@@ -33,4 +33,11 @@ public class EntradaCombustible {
     @ManyToOne
     @JoinColumn(name="id_persona", referencedColumnName = "idPersona")
     private Persona persona;
+
+    public EntradaCombustible(Long idEntrada, String tipo, Integer cantidad, Date fechaEntrada) {
+        this.idEntrada = idEntrada;
+        this.tipo = tipo;
+        this.cantidad = cantidad;
+        this.fechaEntrada = fechaEntrada;
+    }
 }
