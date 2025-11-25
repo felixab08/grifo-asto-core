@@ -1,6 +1,7 @@
 package es.felix.grifo_asto.service.impl;
 
 import es.felix.grifo_asto.dto.MedicionDto;
+import es.felix.grifo_asto.dto.MedicionRequestDto;
 import es.felix.grifo_asto.entity.Medicion;
 import es.felix.grifo_asto.mapper.MedicionMapper;
 import es.felix.grifo_asto.repository.MedicionRepository;
@@ -16,11 +17,19 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class MedicionServiceImpl implements MedicionService {
+
     private MedicionRepository medicionRepository;
     private static final Logger log = LoggerFactory.getLogger(MedicionServiceImpl.class);
+
     @Override
-    public MedicionDto createMedicion(MedicionDto medicionDto) {
+    public MedicionDto createMedicion(MedicionRequestDto medicionDto) {
+
+        log.info("Creando medicion antes del mapper {}", medicionDto.toString());
+
         Medicion medicion = MedicionMapper.mapToMedicion(medicionDto);
+
+        log.info("Creando medicion despues del mapper {}", medicion.toString());
+
         Medicion saveMedicion = medicionRepository.save(medicion);
         return MedicionMapper.mapToMedicionDto(saveMedicion);
     }

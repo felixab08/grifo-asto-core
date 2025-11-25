@@ -1,5 +1,6 @@
 package es.felix.grifo_asto.controller;
 
+import es.felix.grifo_asto.controller.convert.GeneralResponse;
 import es.felix.grifo_asto.dto.PersonaDto;
 import es.felix.grifo_asto.service.PersonaService;
 import lombok.AllArgsConstructor;
@@ -35,9 +36,20 @@ public class PersonaController {
     }
     // Biuld Get All Personas REST API
     @GetMapping("/list")
-    public ResponseEntity<List<PersonaDto>> getAllPersonas() {
-        List<PersonaDto> personas = personaService.getAllPersonas();
-        return ResponseEntity.ok(personas);
+    public ResponseEntity<GeneralResponse<List<PersonaDto>>> getAllPersonas() {
+        List<PersonaDto> personasDto = personaService.getAllPersonas();
+        GeneralResponse<List<PersonaDto>> respuestaGeneral = new GeneralResponse<>();
+        try {
+            respuestaGeneral.setCode(200);
+            respuestaGeneral.setMessage("OK");
+            respuestaGeneral.setData(personasDto);
+        } catch (Exception e) {
+            respuestaGeneral.setCode(500);
+            respuestaGeneral.setMessage(e.getMessage());
+            respuestaGeneral.setData(null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuestaGeneral);
+        }
+        return ResponseEntity.ok(respuestaGeneral);
     }
 
     // Build Delete Persola REST API

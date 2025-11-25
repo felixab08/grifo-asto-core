@@ -1,6 +1,7 @@
 package es.felix.grifo_asto.mapper;
 
 import es.felix.grifo_asto.dto.MedicionDto;
+import es.felix.grifo_asto.dto.MedicionRequestDto;
 import es.felix.grifo_asto.entity.Medicion;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,10 +19,11 @@ public class MedicionMapper {
                 medicion.getPremiun()
         );
     }
-    public static Medicion mapToMedicion(MedicionDto medicionDto) {
+    public static Medicion mapToMedicion(MedicionRequestDto medicionDto) {
+
         log.info("medicionDto>>>>",String.valueOf(medicionDto));
+
         return new Medicion(
-                medicionDto.getIdMedicion(),
                 medicionDto.getIdpersona(),
                 medicionDto.getFechaMedicion(),
                 medicionDto.getDiesel(),

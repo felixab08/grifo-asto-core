@@ -13,8 +13,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MedicionDto {
-    Long idMedicion;
-    Long idpersona;
+     Long idMedicion;
+    Persona idpersona;
     Date fechaMedicion;
     String diesel;
     String regular;

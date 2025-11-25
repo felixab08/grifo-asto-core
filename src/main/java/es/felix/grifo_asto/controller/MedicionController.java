@@ -1,4 +1,8 @@
 package es.felix.grifo_asto.controller;
+import es.felix.grifo_asto.controller.convert.GeneralResponse;
+import es.felix.grifo_asto.dto.MedicionRequestDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import es.felix.grifo_asto.dto.MedicionDto;
 import es.felix.grifo_asto.service.MedicionService;
@@ -13,16 +17,32 @@ import java.util.List;
 @RestController
 @RequestMapping("api/medicion")
 public class MedicionController {
+
     MedicionService medicionService;
 
+    private static final Logger log = LoggerFactory.getLogger(MedicionController.class);
+
+
     @PostMapping("/registrar")
-    public ResponseEntity<MedicionDto> createMedicion(@RequestBody MedicionDto medicionDto){
+    public ResponseEntity<MedicionDto> createMedicion(@RequestBody MedicionRequestDto medicionDto){
+        log.info("Iniciando controller medicion,  {}", medicionDto.getIdpersona());
         MedicionDto createMedicionDto = medicionService.createMedicion(medicionDto);
         return new ResponseEntity<>(createMedicionDto, HttpStatus.CREATED);
     }
+
     @GetMapping("/list")
-    public ResponseEntity<List<MedicionDto>> getAllMediciones() {
+    public ResponseEntity<GeneralResponse<List<MedicionDto>>> getAllMediciones() {
         List<MedicionDto> mediciones = medicionService.getAllMedicion();
-        return ResponseEntity.ok(mediciones);
+        GeneralResponse<List<MedicionDto>> generalResponse = new GeneralResponse<>();
+        try {
+            generalResponse.setCode(200);
+            generalResponse.setMessage("OK");
+            generalResponse.setData(mediciones);
+        }  catch (Exception e) {
+            generalResponse.setCode(500);
+            generalResponse.setMessage(e.getMessage());
+            return  ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(generalResponse);
+        }
+        return ResponseEntity.ok(generalResponse);
     }
 }

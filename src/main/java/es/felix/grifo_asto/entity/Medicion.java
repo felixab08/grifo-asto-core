@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -18,11 +19,14 @@ public class Medicion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMedicion;
 
-    @Column(name = "id_persona", nullable = false)
-    private Long idPersona;
+   @ManyToOne
+//   @JoinColumn(name = "medicion", nullable = false, foreignKey = @ForeignKey(name = "fk_medicion_tanque_persona"))
+   @JoinColumn(name = "idpersona", nullable = false)
+    private Persona idPersona;
 
     @Column(name = "fecha_medicion",updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date fechaMedicion;
 
     @Column(name = "diesel")
@@ -33,4 +37,12 @@ public class Medicion {
 
     @Column(name = "premiun")
     private String premiun;
+
+    public Medicion(Persona idPersona, Date fechaMedicion, String diesel, String regular, String premiun) {
+        this.idPersona = idPersona;
+        this.fechaMedicion = fechaMedicion;
+        this.diesel = diesel;
+        this.regular = regular;
+        this.premiun = premiun;
+    }
 }

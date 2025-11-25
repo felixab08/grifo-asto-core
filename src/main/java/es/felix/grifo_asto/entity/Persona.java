@@ -5,13 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Entity
 @Table(name = "persona")
 public class Persona {
@@ -36,7 +38,20 @@ public class Persona {
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
     )
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date fechaCreate;
+
+    public Persona(Long idPersona, String nombre, String apellido, String telefono, Date fechaCreate) {
+        this.idPersona = idPersona;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.fechaCreate = fechaCreate;
+    }
+
+//    @OneToMany(mappedBy = "idPersona", cascade = {CascadeType.ALL}, orphanRemoval = true, fetch = FetchType.LAZY)
+//    private List<Medicion> medicion;
+
 
 
 }
