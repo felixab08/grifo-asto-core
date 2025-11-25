@@ -23,13 +23,7 @@ public class MedicionServiceImpl implements MedicionService {
 
     @Override
     public MedicionDto createMedicion(MedicionRequestDto medicionDto) {
-
-        log.info("Creando medicion antes del mapper {}", medicionDto.toString());
-
         Medicion medicion = MedicionMapper.mapToMedicion(medicionDto);
-
-        log.info("Creando medicion despues del mapper {}", medicion.toString());
-
         Medicion saveMedicion = medicionRepository.save(medicion);
         return MedicionMapper.mapToMedicionDto(saveMedicion);
     }
@@ -37,7 +31,6 @@ public class MedicionServiceImpl implements MedicionService {
     @Override
     public List<MedicionDto> getAllMedicion() {
         List<Medicion> mediciones = medicionRepository.findAll();
-        log.info("Valor procesado: {}", mediciones);
         return mediciones.stream().map((Medicion medicion)-> MedicionMapper.mapToMedicionDto(medicion)).collect(Collectors.toList());
     }
 }

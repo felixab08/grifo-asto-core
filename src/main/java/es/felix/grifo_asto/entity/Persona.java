@@ -49,9 +49,4 @@ public class Persona {
         this.fechaCreate = fechaCreate;
     }
 
-//    @OneToMany(mappedBy = "idPersona", cascade = {CascadeType.ALL}, orphanRemoval = true, fetch = FetchType.LAZY)
-//    private List<Medicion> medicion;
-
-
-
 }

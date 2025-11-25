@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 public class MedicionMapper {
 
     public static MedicionDto mapToMedicionDto(Medicion medicion) {
-        log.info("Valor procesado: {}", medicion);
         return new MedicionDto(
                 medicion.getIdMedicion(),
                 medicion.getIdPersona(),
@@ -20,9 +19,6 @@ public class MedicionMapper {
         );
     }
     public static Medicion mapToMedicion(MedicionRequestDto medicionDto) {
-
-        log.info("medicionDto>>>>",String.valueOf(medicionDto));
-
         return new Medicion(
                 medicionDto.getIdpersona(),
                 medicionDto.getFechaMedicion(),

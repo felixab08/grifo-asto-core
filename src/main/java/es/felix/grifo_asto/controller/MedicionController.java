@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @AllArgsConstructor
@@ -25,7 +26,6 @@ public class MedicionController {
 
     @PostMapping("/registrar")
     public ResponseEntity<MedicionDto> createMedicion(@RequestBody MedicionRequestDto medicionDto){
-        log.info("Iniciando controller medicion,  {}", medicionDto.getIdpersona());
         MedicionDto createMedicionDto = medicionService.createMedicion(medicionDto);
         return new ResponseEntity<>(createMedicionDto, HttpStatus.CREATED);
     }
