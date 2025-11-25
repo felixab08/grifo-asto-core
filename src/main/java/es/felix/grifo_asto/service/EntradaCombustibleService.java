@@ -1,11 +1,11 @@
 package es.felix.grifo_asto.service;
 
-import es.felix.grifo_asto.dto.EntadaCombustibleDto;
+import es.felix.grifo_asto.dto.EntradaCombustibleDto;
 
 import java.util.List;
 
 public interface EntradaCombustibleService {
-    EntadaCombustibleDto crearEntradaCombustible(EntadaCombustibleDto entadaCombustibleDto);
+    EntradaCombustibleDto crearEntradaCombustible(EntradaCombustibleDto entadaCombustibleDto);
 
-    List<EntadaCombustibleDto> getAllEntradasCombustible();
+    List<EntradaCombustibleDto> getAllEntradasCombustible();
 }

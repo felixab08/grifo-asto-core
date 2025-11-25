@@ -1,11 +1,11 @@
 package es.felix.grifo_asto.mapper;
 
-import es.felix.grifo_asto.dto.EntadaCombustibleDto;
+import es.felix.grifo_asto.dto.EntradaCombustibleDto;
 import es.felix.grifo_asto.entity.EntradaCombustible;
 
 public class EntradaCombustibleMapper {
-    public static EntadaCombustibleDto mapToEntradaCombustibleDto(EntradaCombustible ent) {
-        return new EntadaCombustibleDto(
+    public static EntradaCombustibleDto mapToEntradaCombustibleDto(EntradaCombustible ent) {
+        return new EntradaCombustibleDto(
                 ent.getIdEntrada(),
                 ent.getTipo(),
                 ent.getCantidad(),
@@ -14,7 +14,7 @@ public class EntradaCombustibleMapper {
         );
     }
 
-    public static EntradaCombustible mapToEntradaCombustible(EntadaCombustibleDto ent) {
+    public static EntradaCombustible mapToEntradaCombustible(EntradaCombustibleDto ent) {
         return new EntradaCombustible(
                 ent.getIdEntrada(),
                 ent.getTipo(),

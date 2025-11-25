@@ -1,7 +1,7 @@
 package es.felix.grifo_asto.controller;
 
 import es.felix.grifo_asto.controller.convert.GeneralResponse;
-import es.felix.grifo_asto.dto.EntadaCombustibleDto;
+import es.felix.grifo_asto.dto.EntradaCombustibleDto;
 import es.felix.grifo_asto.service.EntradaCombustibleService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,9 +17,9 @@ public class EntradaCombustibleController {
     EntradaCombustibleService entradaCombustibleSrv;
 
     @GetMapping("/list")
-    public ResponseEntity<GeneralResponse<List<EntadaCombustibleDto>>> getAllMediciones() {
-        List<EntadaCombustibleDto> entrada = entradaCombustibleSrv.getAllEntradasCombustible();
-        GeneralResponse<List<EntadaCombustibleDto>> generalResponse = new GeneralResponse<>();
+    public ResponseEntity<GeneralResponse<List<EntradaCombustibleDto>>> getAllMediciones() {
+        List<EntradaCombustibleDto> entrada = entradaCombustibleSrv.getAllEntradasCombustible();
+        GeneralResponse<List<EntradaCombustibleDto>> generalResponse = new GeneralResponse<>();
         try {
             generalResponse.setCode(200);
             generalResponse.setMessage("OK");
@@ -33,8 +33,8 @@ public class EntradaCombustibleController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<EntadaCombustibleDto> createMedicion(@RequestBody EntadaCombustibleDto entradaDto){
-        EntadaCombustibleDto entrada = entradaCombustibleSrv.crearEntradaCombustible(entradaDto);
+    public ResponseEntity<EntradaCombustibleDto> createMedicion(@RequestBody EntradaCombustibleDto entradaDto){
+        EntradaCombustibleDto entrada = entradaCombustibleSrv.crearEntradaCombustible(entradaDto);
         return new ResponseEntity<>(entrada, HttpStatus.CREATED);
     }
 }

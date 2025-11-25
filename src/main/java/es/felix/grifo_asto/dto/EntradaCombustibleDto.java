@@ -10,9 +10,9 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EntadaCombustibleDto {
+public class EntradaCombustibleDto {
     Long idEntrada;
-        String tipo;
+    String tipo;
     Integer cantidad;
     Date fechaEntrada;
     Persona persona;
