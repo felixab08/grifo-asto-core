@@ -1,5 +1,7 @@
 package es.felix.grifo_asto.service.impl;
 
+import static es.felix.grifo_asto.config.Constants.NOT_FOUND_PERSON;
+
 import es.felix.grifo_asto.dto.PersonaDto;
 import es.felix.grifo_asto.entity.Persona;
 import es.felix.grifo_asto.exception.ResourceNotFoundException;
@@ -7,10 +9,12 @@ import es.felix.grifo_asto.mapper.PersonaMapper;
 import es.felix.grifo_asto.repository.PersonaRepository;
 import es.felix.grifo_asto.service.PersonaService;
 import lombok.AllArgsConstructor;
+import org.apache.logging.log4j.util.InternalException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @Service
 @AllArgsConstructor
@@ -25,7 +29,7 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     public PersonaDto updatePersona(Long id, PersonaDto personaDto) {
-        Persona persona =  personaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Persona no encontrado" + id));
+        Persona persona =  personaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_PERSON + id));
         persona.setNombre(personaDto.getNombre());
         persona.setApellido(personaDto.getApellido());
         persona.setFechaCreate(personaDto.getFechaCreate());
@@ -37,7 +41,7 @@ public class PersonaServiceImpl implements PersonaService {
     @Override
     public PersonaDto getPersonaById(Long id) {
       Persona persona =  personaRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No existe la persona" + id));
+                .orElseThrow(() -> new InternalException("No existe la persona" + id));
         return PersonaMapper.mapToPersonaDto(persona);
     }
 

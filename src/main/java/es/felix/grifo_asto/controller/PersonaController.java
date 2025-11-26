@@ -4,6 +4,8 @@ import es.felix.grifo_asto.controller.convert.GeneralResponse;
 import es.felix.grifo_asto.dto.PersonaDto;
 import es.felix.grifo_asto.service.PersonaService;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ import java.util.List;
 @RequestMapping("api/persona")
 public class PersonaController {
     PersonaService personaService;
+    private static final Logger log = LoggerFactory.getLogger(MedicionController.class);
+
 
     @PostMapping("/registrar")
     public ResponseEntity<PersonaDto> createPersona(@RequestBody PersonaDto personaDto) {
@@ -32,6 +36,8 @@ public class PersonaController {
     @GetMapping("{id}")
     public ResponseEntity<PersonaDto> getPersonaById(@PathVariable("id") Long id){
         PersonaDto personaDto = personaService.getPersonaById(id);
+        log.info("CONTROLLER LISTAR PERSONA: {}", personaDto);
+
         return ResponseEntity.ok(personaDto);
     }
     // Biuld Get All Personas REST API
