@@ -1,7 +1,6 @@
 package es.felix.grifo_asto.controller;
 
 import es.felix.grifo_asto.controller.convert.GeneralResponse;
-import es.felix.grifo_asto.dto.PersonaDto;
 import es.felix.grifo_asto.dto.RegistroMedidorDto;
 import es.felix.grifo_asto.service.RegistroMedidorService;
 import lombok.AllArgsConstructor;
@@ -22,6 +21,13 @@ public class RegistroMedidorController {
         RegistroMedidorDto saved = registroMedidorSrv.crearRegistroMedidor(registroMedidorDto);
         return new  ResponseEntity<>(saved, HttpStatus.CREATED);
     }
+
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<RegistroMedidorDto> updateRegistroMedidor(@PathVariable("id") Long id, @RequestBody RegistroMedidorDto registroMedidorUpdateDto) {
+        RegistroMedidorDto registroMedidorDto = registroMedidorSrv.updateRegistroMedidor(id, registroMedidorUpdateDto);
+        return new  ResponseEntity<>(registroMedidorDto, HttpStatus.OK);
+    }
+
 
     @GetMapping("/list")
     public ResponseEntity<GeneralResponse<List<RegistroMedidorDto>>> getAllRegistroMedidor() {

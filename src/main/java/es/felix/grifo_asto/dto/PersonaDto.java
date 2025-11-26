@@ -18,6 +18,5 @@ public class PersonaDto {
     private String nombre;
     private String apellido;
     private String telefono;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Date fechaCreate;
 }
