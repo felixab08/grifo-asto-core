@@ -24,7 +24,6 @@ public class FinTurno {
     private String observaciones;
 
     @Column(name = "fecha_entrada",updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date fechaEntrada;
 

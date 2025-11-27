@@ -1,19 +1,16 @@
 package es.felix.grifo_asto.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-//@AllArgsConstructor
 @Entity
 @Table(name = "persona")
 public class Persona {
@@ -37,7 +34,6 @@ public class Persona {
             insertable = false,   // 👈 IMPORTANTE
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
     )
-    @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date fechaCreate;
 

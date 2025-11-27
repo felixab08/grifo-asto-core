@@ -15,8 +15,8 @@ public class MedicionRequestDto {
 
     @NonNull
     Date fechaMedicion;
-    String diesel;
-    String regular;
-    String premiun;
+    Double diesel;
+    Double regular;
+    Double premiun;
 }
 

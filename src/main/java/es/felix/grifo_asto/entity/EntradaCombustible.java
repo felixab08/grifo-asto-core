@@ -26,7 +26,6 @@ public class EntradaCombustible {
     private Integer cantidad;
 
     @Column(name = "fecha_entrada",updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date fechaEntrada;
 

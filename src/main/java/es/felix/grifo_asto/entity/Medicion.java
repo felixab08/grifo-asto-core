@@ -25,20 +25,19 @@ public class Medicion {
     private Persona idPersona;
 
     @Column(name = "fecha_medicion",updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date fechaMedicion;
 
     @Column(name = "diesel")
-    private String diesel;
+    private Double diesel;
 
     @Column(name = "regular")
-    private String regular;
+    private Double regular;
 
     @Column(name = "premiun")
-    private String premiun;
+    private Double premiun;
 
-    public Medicion(Persona idPersona, Date fechaMedicion, String diesel, String regular, String premiun) {
+    public Medicion(Persona idPersona, Date fechaMedicion, Double diesel, Double regular, Double premiun) {
         this.idPersona = idPersona;
         this.fechaMedicion = fechaMedicion;
         this.diesel = diesel;
