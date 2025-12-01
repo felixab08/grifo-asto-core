@@ -1,10 +1,8 @@
 package es.felix.grifo_asto.service.impl;
 
 import es.felix.grifo_asto.dto.RegistroMedidorDto;
-import es.felix.grifo_asto.entity.Persona;
 import es.felix.grifo_asto.entity.RegistroMedidor;
 import es.felix.grifo_asto.exception.ResourceNotFoundException;
-import es.felix.grifo_asto.mapper.PersonaMapper;
 import es.felix.grifo_asto.mapper.RegistroMedidorMapper;
 import es.felix.grifo_asto.repository.RegistroMedidorRepository;
 import es.felix.grifo_asto.service.RegistroMedidorService;
@@ -31,11 +29,8 @@ public class RegistroMedidorServiceImpl implements RegistroMedidorService {
     @Override
     public RegistroMedidorDto updateRegistroMedidor(Long id, RegistroMedidorDto registroMedidorDto) {
         RegistroMedidor registro =  registroMedidorRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_PERSON + id));
-        registro.setIdRegistro(registroMedidorDto.getIdRegistro());
         registro.setSalida(registroMedidorDto.getSalida());
         registro.setEntrada(registroMedidorDto.getEntrada());
-        registro.setTipo(registroMedidorDto.getTipo());
-        registro.setIdTurno(registroMedidorDto.getTurno());
 
         RegistroMedidor updateRegistro = registroMedidorRepository.save(registro);
         return RegistroMedidorMapper.mapToRegistroDto(updateRegistro);

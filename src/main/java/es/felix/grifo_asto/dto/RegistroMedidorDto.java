@@ -23,16 +23,4 @@ public class RegistroMedidorDto {
         this.salida = salida;
         this.tipo = tipo;
     }
-
-    public RegistroMedidorDto(Double entrada, String tipo, FinTurno turno) {
-        this.entrada = entrada;
-        this.tipo = tipo;
-        this.turno = turno;
-    }
-
-    public RegistroMedidorDto(FinTurno turno, String tipo, Double entrada) {
-        this.turno = turno;
-        this.tipo = tipo;
-        this.entrada = entrada;
-    }
 }

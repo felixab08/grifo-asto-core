@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface FinTurnoRepository extends JpaRepository<FinTurno, Long> {
 
+    List<FinTurno> findTop20ByPersona_IdPersonaOrderByFechaEntradaDesc(Long idPersona);
 }
