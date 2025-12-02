@@ -15,10 +15,12 @@ public class RegistroMedidorRequestDto {
     Double salida;
     String tipo;
     Long idTurno;
+    String code;
 
-    public RegistroMedidorRequestDto(FinTurno idTurno, Double entrada, String tipo) {
+    public RegistroMedidorRequestDto(FinTurno idTurno, Double entrada, String tipo, String code) {
         this.entrada = entrada;
         this.tipo = tipo;
         this.idTurno = idTurno.getIdTurno();
+        this.code = code;
     }
 }

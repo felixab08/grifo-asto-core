@@ -34,6 +34,8 @@ public class Medicion {
     @Column(name = "regular")
     private Double regular;
 
+
+
     @Column(name = "premiun")
     private Double premiun;
 

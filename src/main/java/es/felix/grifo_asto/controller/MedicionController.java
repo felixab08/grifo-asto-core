@@ -1,8 +1,6 @@
 package es.felix.grifo_asto.controller;
 import es.felix.grifo_asto.controller.convert.GeneralResponse;
 import es.felix.grifo_asto.dto.MedicionRequestDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import es.felix.grifo_asto.dto.MedicionDto;
 import es.felix.grifo_asto.service.MedicionService;
@@ -11,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @AllArgsConstructor
@@ -20,8 +17,6 @@ import java.util.List;
 public class MedicionController {
 
     MedicionService medicionService;
-
-    private static final Logger log = LoggerFactory.getLogger(MedicionController.class);
 
 
     @PostMapping("/registrar")

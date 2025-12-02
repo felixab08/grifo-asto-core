@@ -13,4 +13,5 @@ public class MedidaDto {
     private String tipo;
     private Double entrada;
     private Double salida;
+    private String code;
 }

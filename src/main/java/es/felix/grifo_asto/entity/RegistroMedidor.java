@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "registro_medidor")
 public class RegistroMedidor {
+    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_register")
@@ -25,7 +27,18 @@ public class RegistroMedidor {
     @Column(name="tipo", nullable = false, length = 50)
     private String tipo;
 
+    @Column(name = "code")
+    private String code;
+
     @ManyToOne
     @JoinColumn(name="id_turno", referencedColumnName = "id_turno")
     private FinTurno idTurno;
+
+    public RegistroMedidor(Long idRegistro2, Double entrada2, Double salida2, String tipo2, String code2) {
+        this.idRegistro = idRegistro2;
+        this.entrada = entrada2;
+        this.salida = salida2;
+        this.tipo = tipo2;
+        this.code = code2;
+    }
 }

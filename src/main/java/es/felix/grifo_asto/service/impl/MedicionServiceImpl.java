@@ -7,8 +7,6 @@ import es.felix.grifo_asto.mapper.MedicionMapper;
 import es.felix.grifo_asto.repository.MedicionRepository;
 import es.felix.grifo_asto.service.MedicionService;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +17,6 @@ import java.util.stream.Collectors;
 public class MedicionServiceImpl implements MedicionService {
 
     private MedicionRepository medicionRepository;
-    private static final Logger log = LoggerFactory.getLogger(MedicionServiceImpl.class);
 
     @Override
     public MedicionDto createMedicion(MedicionRequestDto medicionDto) {

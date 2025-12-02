@@ -12,17 +12,20 @@ public class RegistroMedidorMapper {
                 registroMedidor.getEntrada(),
                 registroMedidor.getSalida(),
                 registroMedidor.getTipo(),
-                registroMedidor.getIdTurno()
+                registroMedidor.getIdTurno(),
+                registroMedidor.getCode()
         );
     }
     public static RegistroMedidor mapToRegistroMedidor(RegistroMedidorDto registroMedidor) {
-        return  new RegistroMedidor(
+        RegistroMedidor entity = new RegistroMedidor(
                 registroMedidor.getIdRegistro(),
                 registroMedidor.getEntrada(),
                 registroMedidor.getSalida(),
                 registroMedidor.getTipo(),
-                registroMedidor.getTurno()
+                registroMedidor.getCode()
         );
+        entity.setIdTurno(registroMedidor.getTurno());
+        return entity;
     }
 
     public static RegistroMedidorDto mapToRegistroMedidorDtoResponse(RegistroMedidor registroMedidor) {
@@ -30,14 +33,16 @@ public class RegistroMedidorMapper {
                 registroMedidor.getIdRegistro(),
                 registroMedidor.getEntrada(),
                 registroMedidor.getSalida(),
-                registroMedidor.getTipo()
+                registroMedidor.getTipo(),
+                registroMedidor.getCode()
         );
     }
     public static RegistroMedidorRequestDto mapToRegistroMedidorDtoRequest(RegistroMedidor registroMedidor) {
         return  new RegistroMedidorRequestDto(
                 registroMedidor.getIdTurno(),
                 registroMedidor.getEntrada(),
-                registroMedidor.getTipo()
+                registroMedidor.getTipo(),
+                registroMedidor.getCode()
         );
     }
 }

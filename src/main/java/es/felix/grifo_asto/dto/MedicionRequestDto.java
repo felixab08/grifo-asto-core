@@ -1,10 +1,8 @@
 package es.felix.grifo_asto.dto;
 
 import es.felix.grifo_asto.entity.Persona;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NonNull;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -18,5 +16,6 @@ public class MedicionRequestDto {
     Double diesel;
     Double regular;
     Double premiun;
+    String code;
 }
 

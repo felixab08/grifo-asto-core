@@ -19,4 +19,5 @@ public class MedicionDto {
     Double diesel;
     Double regular;
     Double premiun;
+    
 }

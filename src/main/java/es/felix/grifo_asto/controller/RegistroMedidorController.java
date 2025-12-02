@@ -8,16 +8,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @AllArgsConstructor
 @RestController
 @RequestMapping("api/registro-medidor")
 public class RegistroMedidorController {
     final RegistroMedidorService  registroMedidorSrv;
+    private static final Logger log = LoggerFactory.getLogger(MedicionController.class);
 
     @PostMapping("/registrar")
     public ResponseEntity<RegistroMedidorDto> createRegistroMedidor(@RequestBody RegistroMedidorDto registroMedidorDto) {
+        log.info("Findo de entrada:{}", registroMedidorDto);
         RegistroMedidorDto saved = registroMedidorSrv.crearRegistroMedidor(registroMedidorDto);
         return new  ResponseEntity<>(saved, HttpStatus.CREATED);
     }

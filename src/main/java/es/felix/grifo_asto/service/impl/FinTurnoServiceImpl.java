@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import static es.felix.grifo_asto.config.Constants.NOT_FOUND_TURNO;
@@ -58,18 +59,22 @@ public class FinTurnoServiceImpl implements FinTurnoService {
             
             List<MedidaDto> medidaDtos = medidas.stream()
                     .sorted(Comparator.comparing((RegistroMedidor m) -> {
-                        String tipo = m.getTipo().toLowerCase();
-                        if (tipo.contains("diesel") || tipo.contains("petroleo")) return 1;
-                        if (tipo.contains("regular")) return 2;
-                        if (tipo.contains("premiun") || tipo.contains("premium")) return 3;
-                        return 4;
+                        String code = m.getCode();
+                        if (code.contains("pet11")) return 1;
+                        if (code.contains("pet21")) return 2;
+                        if (code.contains("reg12")) return 3;
+                        if (code.contains("reg22")) return 4;
+                        if (code.contains("pri13")) return 5;
+                        if (code.contains("pri23")) return 6;
+                        return 7;
                     }))
                     .map(m -> new MedidaDto(
                             m.getIdRegistro(),
                             m.getIdTurno().getIdTurno(),
                             m.getTipo(),
                             m.getEntrada(),
-                            m.getSalida()
+                            m.getSalida(),
+                            m.getCode()
                     ))
                     .collect(Collectors.toList());
 

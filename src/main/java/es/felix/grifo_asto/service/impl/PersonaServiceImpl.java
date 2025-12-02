@@ -53,7 +53,7 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     public void deletePersona(Long id) {
-        Persona persona =  personaRepository.findById(id)
+        personaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No existe la persona" + id));
         personaRepository.deleteById(id);
     }
