@@ -26,8 +26,9 @@ public class MedicionController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<GeneralResponse<List<MedicionDto>>> getAllMediciones() {
-        List<MedicionDto> mediciones = medicionService.getAllMedicion();
+    public ResponseEntity<GeneralResponse<List<MedicionDto>>> getAllMediciones(@RequestParam(value = "cantidad", required = false, defaultValue = "10") Integer cantidad) {
+
+        List<MedicionDto> mediciones = medicionService.getAllMedicion(cantidad);
         GeneralResponse<List<MedicionDto>> generalResponse = new GeneralResponse<>();
         try {
             generalResponse.setCode(200);

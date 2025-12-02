@@ -7,5 +7,5 @@ import java.util.List;
 public interface EntradaCombustibleService {
     EntradaCombustibleDto crearEntradaCombustible(EntradaCombustibleDto entadaCombustibleDto);
 
-    List<EntradaCombustibleDto> getAllEntradasCombustible();
+    List<EntradaCombustibleDto> getAllEntradasCombustible(Integer cantidad);
 }

@@ -10,5 +10,5 @@ public interface MedicionService {
     MedicionDto createMedicion(MedicionRequestDto medicionDto);
 
 
-    List<MedicionDto> getAllMedicion();
+    List<MedicionDto> getAllMedicion(Integer cantidad);
 }

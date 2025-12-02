@@ -6,6 +6,8 @@ import es.felix.grifo_asto.mapper.EntradaCombustibleMapper;
 import es.felix.grifo_asto.repository.EntradaCombustibleRepository;
 import es.felix.grifo_asto.service.EntradaCombustibleService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +26,8 @@ public class EntradaCombustibleServiceImpl implements EntradaCombustibleService 
     }
 
     @Override
-    public List<EntradaCombustibleDto> getAllEntradasCombustible() {
-         List<EntradaCombustible> entradaCombustible =  entradaCombustibleRepository.findAll();
+    public List<EntradaCombustibleDto> getAllEntradasCombustible(Integer cantidad) {
+         List<EntradaCombustible> entradaCombustible =  entradaCombustibleRepository.findAll(PageRequest.of(0, cantidad, Sort.by(Sort.Direction.DESC, "fechaEntrada"))).getContent();
         return entradaCombustible.stream().map((entrada) -> EntradaCombustibleMapper.mapToEntradaCombustibleDto(entrada)).collect(Collectors.toList());
     }
 }

@@ -7,6 +7,8 @@ import es.felix.grifo_asto.mapper.MedicionMapper;
 import es.felix.grifo_asto.repository.MedicionRepository;
 import es.felix.grifo_asto.service.MedicionService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +28,14 @@ public class MedicionServiceImpl implements MedicionService {
     }
 
     @Override
-    public List<MedicionDto> getAllMedicion() {
-        List<Medicion> mediciones = medicionRepository.findAll();
-        return mediciones.stream().map((Medicion medicion)-> MedicionMapper.mapToMedicionDto(medicion)).collect(Collectors.toList());
+    public List<MedicionDto> getAllMedicion(Integer cantidad) {
+        // Obtener las últimas "cantidad" mediciones ordenadas por fecha descendente
+        List<Medicion> mediciones = medicionRepository
+                .findAll(PageRequest.of(0, cantidad, Sort.by(Sort.Direction.DESC, "fechaMedicion")))
+                .getContent();
+
+        return mediciones.stream()
+                .map(MedicionMapper::mapToMedicionDto)
+                .collect(Collectors.toList());
     }
 }

@@ -17,8 +17,8 @@ public class EntradaCombustibleController {
     EntradaCombustibleService entradaCombustibleSrv;
 
     @GetMapping("/list")
-    public ResponseEntity<GeneralResponse<List<EntradaCombustibleDto>>> getAllMediciones() {
-        List<EntradaCombustibleDto> entrada = entradaCombustibleSrv.getAllEntradasCombustible();
+    public ResponseEntity<GeneralResponse<List<EntradaCombustibleDto>>> getAllMediciones(@RequestParam(value = "cantidad", required = false, defaultValue = "10") Integer cantidad) {
+        List<EntradaCombustibleDto> entrada = entradaCombustibleSrv.getAllEntradasCombustible(cantidad);
         GeneralResponse<List<EntradaCombustibleDto>> generalResponse = new GeneralResponse<>();
         try {
             generalResponse.setCode(200);
