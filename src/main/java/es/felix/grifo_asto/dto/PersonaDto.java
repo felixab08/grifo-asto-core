@@ -17,5 +17,9 @@ public class PersonaDto {
     private String nombre;
     private String apellido;
     private String telefono;
+    private String email;
+    private String username;
+    private String role;
+    private Boolean activo;
     private Date fechaCreate;
 }
