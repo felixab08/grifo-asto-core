@@ -3,6 +3,7 @@ package es.felix.grifo_asto.controller;
 import es.felix.grifo_asto.controller.convert.GeneralResponse;
 import es.felix.grifo_asto.dto.LoginRequestDto;
 import es.felix.grifo_asto.dto.LoginResponseDto;
+import es.felix.grifo_asto.dto.RegisterRequestDto;
 import es.felix.grifo_asto.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -33,5 +34,21 @@ public class AuthController {
 
         log.info("Usuario autenticado exitosamente");
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<GeneralResponse<LoginResponseDto>> register(@Valid @RequestBody RegisterRequestDto registerRequestDto) {
+        log.debug("Intento de registro recibido");
+
+        LoginResponseDto registerResponse = authService.register(registerRequestDto);
+
+        GeneralResponse<LoginResponseDto> response = GeneralResponse.<LoginResponseDto>builder()
+                .code(HttpStatus.CREATED.value())
+                .message("Usuario registrado exitosamente")
+                .data(registerResponse)
+                .build();
+
+        log.info("Usuario registrado exitosamente");
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }
