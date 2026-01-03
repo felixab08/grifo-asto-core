@@ -12,8 +12,7 @@ import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.util.InternalException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 
 @Service
@@ -46,9 +45,9 @@ public class PersonaServiceImpl implements PersonaService {
     }
 
     @Override
-    public List<PersonaDto> getAllPersonas() {
-        List<Persona> personas = personaRepository.findAll();
-        return personas.stream().map((persona)-> PersonaMapper.mapToPersonaDto(persona)).collect(Collectors.toList());
+    public org.springframework.data.domain.Page<PersonaDto> getAllPersonas(org.springframework.data.domain.Pageable pageable) {
+        org.springframework.data.domain.Page<Persona> personas = personaRepository.findAll(pageable);
+        return personas.map(PersonaMapper::mapToPersonaDto);
     }
 
     @Override

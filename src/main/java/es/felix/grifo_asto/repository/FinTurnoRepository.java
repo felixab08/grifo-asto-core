@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface FinTurnoRepository extends JpaRepository<FinTurno, Long> {
+public interface FinTurnoRepository extends JpaRepository<FinTurno, Long>, org.springframework.data.jpa.repository.JpaSpecificationExecutor<FinTurno> {
 
-    List<FinTurno> findTop20ByPersona_IdPersonaOrderByFechaEntradaDesc(Long idPersona);
+    List<FinTurno> findByPersona_IdPersona(Long idPersona, org.springframework.data.domain.Pageable pageable);
 }

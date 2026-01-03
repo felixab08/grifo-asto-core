@@ -10,12 +10,16 @@ import es.felix.grifo_asto.repository.FinTurnoRepository;
 import es.felix.grifo_asto.repository.PersonaRepository;
 import es.felix.grifo_asto.repository.RegistroMedidorRepository;
 import es.felix.grifo_asto.service.FinTurnoService;
+import es.felix.grifo_asto.repository.specification.FinTurnoSpecification;
+import es.felix.grifo_asto.dto.request.turno.FinTurnoFilterDto;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 import static es.felix.grifo_asto.config.Constants.NOT_FOUND_TURNO;
@@ -48,11 +52,19 @@ public class FinTurnoServiceImpl implements FinTurnoService {
     }
 
     @Override
-    public FinTurnoResponse getFinTurnosByPersona(Long idPersona) {
+    public Page<FinTurnoDto> getAllFinTurnos(FinTurnoFilterDto filter, Pageable pageable) {
+        Specification<FinTurno> spec = FinTurnoSpecification.withFilters(filter);
+        Page<FinTurno> page = finTurnoRepository.findAll(spec, pageable);
+        return page.map(FinTurnoMapper::toFinTurnoDto);
+    }
+
+    @Override
+    public FinTurnoResponse getFinTurnosByPersona(Long idPersona, int size) {
         Persona persona = personaRepository.findById(idPersona)
                 .orElseThrow(() -> new ResourceNotFoundException("Persona no encontrada con id: " + idPersona));
 
-        List<FinTurno> turnos = finTurnoRepository.findTop20ByPersona_IdPersonaOrderByFechaEntradaDesc(idPersona);
+        Pageable pageable = org.springframework.data.domain.PageRequest.of(0, size, org.springframework.data.domain.Sort.by("fechaEntrada").descending());
+        List<FinTurno> turnos = finTurnoRepository.findByPersona_IdPersona(idPersona, pageable);
 
         List<TurnoDetailDto> turnoDetails = turnos.stream().map(turno -> {
             List<RegistroMedidor> medidas = registroMedidorRepository.findByIdTurno_IdTurno(turno.getIdTurno());

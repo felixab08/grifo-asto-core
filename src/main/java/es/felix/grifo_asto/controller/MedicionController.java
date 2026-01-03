@@ -1,5 +1,5 @@
 package es.felix.grifo_asto.controller;
-import es.felix.grifo_asto.controller.convert.GeneralResponse;
+
 import es.felix.grifo_asto.dto.MedicionRequestDto;
 
 import es.felix.grifo_asto.dto.MedicionDto;
@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @AllArgsConstructor
 @RestController
@@ -26,19 +26,9 @@ public class MedicionController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<GeneralResponse<List<MedicionDto>>> getAllMediciones(@RequestParam(value = "cantidad", required = false, defaultValue = "10") Integer cantidad) {
-
-        List<MedicionDto> mediciones = medicionService.getAllMedicion(cantidad);
-        GeneralResponse<List<MedicionDto>> generalResponse = new GeneralResponse<>();
-        try {
-            generalResponse.setCode(200);
-            generalResponse.setMessage("OK");
-            generalResponse.setData(mediciones);
-        }  catch (Exception e) {
-            generalResponse.setCode(500);
-            generalResponse.setMessage(e.getMessage());
-            return  ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(generalResponse);
-        }
-        return ResponseEntity.ok(generalResponse);
+    public ResponseEntity<es.felix.grifo_asto.shared.PaginationResponse<MedicionDto>> getAllMediciones(
+            org.springframework.data.domain.Pageable pageable) {
+        org.springframework.data.domain.Page<MedicionDto> page = medicionService.getAllMedicion(pageable);
+        return ResponseEntity.ok(es.felix.grifo_asto.shared.PaginationResponse.fromPage(page));
     }
 }

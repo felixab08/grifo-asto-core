@@ -1,6 +1,6 @@
 package es.felix.grifo_asto.controller;
 
-import es.felix.grifo_asto.controller.convert.GeneralResponse;
+
 import es.felix.grifo_asto.dto.PersonaDto;
 import es.felix.grifo_asto.service.PersonaService;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @AllArgsConstructor
 @RestController
@@ -42,20 +42,10 @@ public class PersonaController {
     }
     // Biuld Get All Personas REST API
     @GetMapping("/list")
-    public ResponseEntity<GeneralResponse<List<PersonaDto>>> getAllPersonas() {
-        List<PersonaDto> personasDto = personaService.getAllPersonas();
-        GeneralResponse<List<PersonaDto>> respuestaGeneral = new GeneralResponse<>();
-        try {
-            respuestaGeneral.setCode(200);
-            respuestaGeneral.setMessage("OK");
-            respuestaGeneral.setData(personasDto);
-        } catch (Exception e) {
-            respuestaGeneral.setCode(500);
-            respuestaGeneral.setMessage(e.getMessage());
-            respuestaGeneral.setData(null);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuestaGeneral);
-        }
-        return ResponseEntity.ok(respuestaGeneral);
+    public ResponseEntity<es.felix.grifo_asto.shared.PaginationResponse<PersonaDto>> getAllPersonas(
+            org.springframework.data.domain.Pageable pageable) {
+        org.springframework.data.domain.Page<PersonaDto> page = personaService.getAllPersonas(pageable);
+        return ResponseEntity.ok(es.felix.grifo_asto.shared.PaginationResponse.fromPage(page));
     }
 
     // Build Delete Persola REST API

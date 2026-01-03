@@ -12,5 +12,7 @@ public interface FinTurnoService {
 
     List<FinTurnoDto> listAllFinTurnos();
 
-    FinTurnoResponse getFinTurnosByPersona(Long idPersona);
+    FinTurnoResponse getFinTurnosByPersona(Long idPersona, int size);
+
+    org.springframework.data.domain.Page<FinTurnoDto> getAllFinTurnos(es.felix.grifo_asto.dto.request.turno.FinTurnoFilterDto filter, org.springframework.data.domain.Pageable pageable);
 }
