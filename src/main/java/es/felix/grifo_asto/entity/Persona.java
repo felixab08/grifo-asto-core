@@ -27,6 +27,21 @@ public class Persona {
     @Column(name = "telefono",nullable = false, length = 9)
     private String telefono;
 
+    @Column(name = "email", unique = true, nullable = false, length = 150)
+    private String email;
+
+    @Column(name = "username", unique = true, nullable = false, length = 50)
+    private String username;
+
+    @Column(name = "password", nullable = false, length = 255)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false, length = 20)
+    private Role role;
+
+    @Column(name = "activo", nullable = false)
+    private Boolean activo = true;
 
     @Column(
             name = "fecha_create",
