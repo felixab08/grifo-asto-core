@@ -43,6 +43,32 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
 
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<GeneralResponse<Object>> handleUserAlreadyExistsException(UserAlreadyExistsException ex) {
+        log.warn("Usuario ya existe: {}", ex.getMessage());
+
+        GeneralResponse<Object> response = GeneralResponse.builder()
+                .code(HttpStatus.CONFLICT.value())
+                .message(ex.getMessage())
+                .data(null)
+                .build();
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+    }
+
+    @ExceptionHandler(InvalidRoleException.class)
+    public ResponseEntity<GeneralResponse<Object>> handleInvalidRoleException(InvalidRoleException ex) {
+        log.warn("Rol inválido: {}", ex.getMessage());
+
+        GeneralResponse<Object> response = GeneralResponse.builder()
+                .code(HttpStatus.BAD_REQUEST.value())
+                .message(ex.getMessage())
+                .data(null)
+                .build();
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
     @ExceptionHandler(JwtAuthenticationException.class)
     public ResponseEntity<GeneralResponse<Object>> handleJwtAuthenticationException(JwtAuthenticationException ex) {
         log.warn("Error de autenticación JWT: {}", ex.getMessage());

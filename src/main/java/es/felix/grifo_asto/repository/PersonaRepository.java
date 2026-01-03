@@ -9,4 +9,8 @@ public interface PersonaRepository extends JpaRepository<Persona, Long> {
 
     Optional<Persona> findByUsernameOrEmail(String username, String email);
 
+    boolean existsByUsername(String username);
+
+    boolean existsByEmail(String email);
+
 }
