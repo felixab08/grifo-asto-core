@@ -65,7 +65,18 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(authorize -> authorize
                         // Endpoints públicos
-                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers(
+                                "/api/auth/**",
+                                "/",
+                                "/index.html",
+                                "/assets/**",
+                                "/media/**",
+                                "/*.js",
+                                "/*.css",
+                                "/*.ico",
+                                "/*.json",
+                                "/*.txt"
+                        ).permitAll()
                         // Todos los demás endpoints requieren autenticación
                         .anyRequest().authenticated()
                 )

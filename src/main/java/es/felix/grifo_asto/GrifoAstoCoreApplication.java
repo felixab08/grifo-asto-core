@@ -22,9 +22,9 @@ public class GrifoAstoCoreApplication {
 			// Create admin user if not exists
 			if (!personaRepository.findByUsernameOrEmail("admin", "admin@grifo.com").isPresent()) {
 				Persona admin = new Persona();
-				admin.setNombre("Admin");
-				admin.setApellido("Sistema");
-				admin.setTelefono("000000000");
+				admin.setNombre("Felix");
+				admin.setApellido("ASTO BERROCAL");
+				admin.setTelefono("98901031");
 				admin.setEmail("admin@grifo.com");
 				admin.setUsername("admin");
 				admin.setPassword(passwordEncoder.encode("admin123"));
