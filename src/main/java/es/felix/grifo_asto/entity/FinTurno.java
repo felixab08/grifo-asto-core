@@ -4,12 +4,17 @@ package es.felix.grifo_asto.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -30,10 +35,14 @@ public class FinTurno {
     @Column(name = "fecha_salida")
     private Date fechaSalida;
 
+    @Column(name = "sum")
+    private Double sum;
+
+    @Column(name = "rest")
+    private Double rest;
+
     @ManyToOne
     @JoinColumn(name="id_persona", referencedColumnName = "idPersona")
     private Persona persona;
-
-
 
 }

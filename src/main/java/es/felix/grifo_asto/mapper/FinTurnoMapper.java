@@ -10,7 +10,9 @@ public class FinTurnoMapper {
                 finTurno.getObservaciones(),
                 finTurno.getFechaEntrada(),
                 finTurno.getFechaSalida(),
-                finTurno.getPersona()
+                finTurno.getPersona(),
+                finTurno.getSum(),
+                finTurno.getRest()
         );
     }
 
@@ -20,6 +22,8 @@ public class FinTurnoMapper {
                 finTurno.getObservaciones(),
                 finTurno.getFechaEntrada(),
                 finTurno.getFechaSalida(),
+                finTurno.getSum(),
+                finTurno.getRest(),
                 finTurno.getPersona()
         );
     }

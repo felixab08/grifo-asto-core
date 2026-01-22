@@ -18,4 +18,6 @@ public class FinTurnoDto {
     Date fechaEntrada;
     Date fechaSalida;
     Persona persona;
+    Double sum;
+    Double rest;
 }

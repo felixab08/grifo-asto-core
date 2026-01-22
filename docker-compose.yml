@@ -7,6 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: grifo-java-app:1.0.0
+    restart: unless-stopped
     ports:
       - "8080:8080"
     environment:
@@ -20,6 +21,7 @@ services:
   postgres:
     image: postgres:15
     container_name: grifo-postgres
+    restart: unless-stopped
     environment:
       POSTGRES_DB: grifodb
       POSTGRES_USER: postgres

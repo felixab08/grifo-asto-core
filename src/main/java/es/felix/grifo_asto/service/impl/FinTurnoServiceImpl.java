@@ -42,6 +42,8 @@ public class FinTurnoServiceImpl implements FinTurnoService {
         FinTurno finTurno = finTurnoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_TURNO + id));
         finTurno.setFechaSalida(finTurnoDto.getFechaSalida());
         finTurno.setObservaciones(finTurnoDto.getObservaciones());
+        finTurno.setSum(finTurnoDto.getSum());
+        finTurno.setRest(finTurnoDto.getRest());
         return FinTurnoMapper.toFinTurnoDto(finTurnoRepository.save(finTurno));
     }
 
@@ -95,7 +97,9 @@ public class FinTurnoServiceImpl implements FinTurnoService {
                     turno.getFechaEntrada(),
                     turno.getFechaSalida(),
                     medidaDtos,
-                    turno.getObservaciones()
+                    turno.getObservaciones(),
+                    turno.getSum(),
+                    turno.getRest()
             );
         }).collect(Collectors.toList());
 

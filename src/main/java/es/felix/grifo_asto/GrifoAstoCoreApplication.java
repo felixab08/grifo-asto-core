@@ -24,7 +24,7 @@ public class GrifoAstoCoreApplication {
 				Persona admin = new Persona();
 				admin.setNombre("Felix");
 				admin.setApellido("ASTO BERROCAL");
-				admin.setTelefono("98901031");
+				admin.setTelefono("988901031");
 				admin.setEmail("admin@grifo.com");
 				admin.setUsername("admin");
 				admin.setPassword(passwordEncoder.encode("admin123"));

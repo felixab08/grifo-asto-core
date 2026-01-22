@@ -16,4 +16,6 @@ public class TurnoDetailDto {
     private Date fecha_salida;
     private List<MedidaDto> medidas;
     private String observaciones;
+    private Double sum;
+    private Double rest;
 }
