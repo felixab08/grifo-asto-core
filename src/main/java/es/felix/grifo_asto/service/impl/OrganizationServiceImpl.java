@@ -1,6 +1,7 @@
 package es.felix.grifo_asto.service.impl;
 
 import es.felix.grifo_asto.dto.OrganizationDto;
+import es.felix.grifo_asto.dto.filter.FilterDto;
 import es.felix.grifo_asto.entity.Organization;
 import es.felix.grifo_asto.exception.ResourceNotFoundException;
 import es.felix.grifo_asto.mapper.OrganizationMapper;
@@ -39,8 +40,12 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public Page<OrganizationDto> getAllOrganizations(Pageable pageable) {
-        Page<Organization> orgnizaciones = organizationRepository.findAll(pageable);
+    public Page<OrganizationDto> getAllOrganizations(FilterDto filterDto, Pageable pageable) {
+        String searchTerm = filterDto.getSearchTerm();
+        if (searchTerm != null) {
+            searchTerm = "%" + searchTerm + "%";
+        }
+        Page<Organization> orgnizaciones = organizationRepository.findByFilters(filterDto.getStatus(), searchTerm, pageable);
         return orgnizaciones.map(OrganizationMapper::mapToorganizationMapperDto);
     }
 }

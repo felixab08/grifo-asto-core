@@ -1,6 +1,7 @@
 package es.felix.grifo_asto.service.impl;
 
 import es.felix.grifo_asto.dto.TipoVentaDto;
+import es.felix.grifo_asto.dto.filter.FilterDto;
 import es.felix.grifo_asto.entity.TipoVenta;
 import es.felix.grifo_asto.exception.ResourceNotFoundException;
 import es.felix.grifo_asto.mapper.TipoVentaMapper;
@@ -36,8 +37,8 @@ public class TipoVentaServiceImpl implements TipoVentaService {
     }
 
     @Override
-    public Page<TipoVentaDto> getAllTipoVentas(Pageable pageable) {
-        Page<TipoVenta> tipoVentas = tipoVentaRepository.findAll(pageable);
+    public Page<TipoVentaDto> getAllTipoVentas(FilterDto filterDto,Pageable pageable) {
+        Page<TipoVenta> tipoVentas = tipoVentaRepository.findByFilters(filterDto.getStatus(), filterDto.getId(), pageable);
         return tipoVentas.map(TipoVentaMapper::mapToTipoVentaDto);
     }
 }

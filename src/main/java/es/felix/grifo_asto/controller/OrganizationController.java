@@ -2,9 +2,11 @@ package es.felix.grifo_asto.controller;
 
 import es.felix.grifo_asto.dto.OrganizationDto;
 import es.felix.grifo_asto.dto.PersonaDto;
+import es.felix.grifo_asto.dto.filter.FilterDto;
 import es.felix.grifo_asto.service.OrganizationService;
 import es.felix.grifo_asto.shared.PaginationResponse;
 import lombok.AllArgsConstructor;
+import org.hibernate.annotations.Parameter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -29,8 +31,17 @@ public class OrganizationController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<PaginationResponse<OrganizationDto>> getAllOrganizations(Pageable pageable) {
-        Page<OrganizationDto> page = organizationService.getAllOrganizations(pageable);
+    public ResponseEntity<PaginationResponse<OrganizationDto>> getAllOrganizations(
+            Pageable pageable,
+            @RequestParam(required = false) Boolean status,
+            @RequestParam(required = false) String searchTerm) {
+
+        FilterDto filterDto = FilterDto.builder()
+                .searchTerm(searchTerm)
+                .status(status)
+                .build();
+
+        Page<OrganizationDto> page = organizationService.getAllOrganizations(filterDto, pageable);
         return ResponseEntity.ok(PaginationResponse.fromPage(page));
     }
 }
