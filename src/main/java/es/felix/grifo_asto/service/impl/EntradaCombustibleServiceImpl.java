@@ -8,6 +8,8 @@ import es.felix.grifo_asto.service.EntradaCombustibleService;
 import lombok.AllArgsConstructor;
 
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,8 +25,8 @@ public class EntradaCombustibleServiceImpl implements EntradaCombustibleService 
     }
 
     @Override
-    public org.springframework.data.domain.Page<EntradaCombustibleDto> getAllEntradasCombustible(org.springframework.data.domain.Pageable pageable) {
-        org.springframework.data.domain.Page<EntradaCombustible> entradaCombustible =  entradaCombustibleRepository.findAll(pageable);
+    public Page<EntradaCombustibleDto> getAllEntradasCombustible(Pageable pageable) {
+        Page<EntradaCombustible> entradaCombustible =  entradaCombustibleRepository.findAll(pageable);
         return entradaCombustible.map(EntradaCombustibleMapper::mapToEntradaCombustibleDto);
     }
 }

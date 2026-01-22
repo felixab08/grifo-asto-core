@@ -19,7 +19,6 @@ public class PersonaController {
     PersonaService personaService;
     private static final Logger log = LoggerFactory.getLogger(MedicionController.class);
 
-
     @PostMapping("/registrar")
     public ResponseEntity<PersonaDto> createPersona(@RequestBody PersonaDto personaDto) {
         PersonaDto savedPersona = personaService.createPersona(personaDto);
