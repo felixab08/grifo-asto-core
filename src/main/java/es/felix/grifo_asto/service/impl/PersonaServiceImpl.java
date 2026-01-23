@@ -10,6 +10,8 @@ import es.felix.grifo_asto.repository.PersonaRepository;
 import es.felix.grifo_asto.service.PersonaService;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.util.InternalException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -45,8 +47,8 @@ public class PersonaServiceImpl implements PersonaService {
     }
 
     @Override
-    public org.springframework.data.domain.Page<PersonaDto> getAllPersonas(org.springframework.data.domain.Pageable pageable) {
-        org.springframework.data.domain.Page<Persona> personas = personaRepository.findAll(pageable);
+    public Page<PersonaDto> getAllPersonas(Pageable pageable) {
+        Page<Persona> personas = personaRepository.findAll(pageable);
         return personas.map(PersonaMapper::mapToPersonaDto);
     }
 
