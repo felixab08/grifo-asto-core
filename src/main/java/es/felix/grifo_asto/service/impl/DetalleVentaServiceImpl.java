@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static es.felix.grifo_asto.config.Constants.NOT_FOUND_VENTA_DETALLE;
@@ -48,8 +49,22 @@ public class DetalleVentaServiceImpl implements DetalleVentaService {
 
     @Override
     public Page<DetalleVentaDto> getDetalleVenta(FilterDto filterDto, Pageable pageable) {
-        log.info("FILTRO: {}", filterDto);
-        Page<DetalleVenta> detalleVenta = detalleVentaRepository.findByFilters(filterDto.getId(), filterDto.getStartDate(), filterDto.getEndDate(), pageable);
+        log.info("filterDto: {}", filterDto);
+        LocalDate start = filterDto.getStartDate() != null
+                ? filterDto.getStartDate()
+                : LocalDate.of(2026, 1, 1);
+
+        LocalDate end = filterDto.getEndDate() != null
+                ? filterDto.getEndDate()
+                : LocalDate.now();
+        log.info("start: {}", start);
+        log.info("end: {}", end);
+        var detalleVenta = detalleVentaRepository.findByFilters(filterDto.getId(), start, end, pageable);
+
+
+
+        detalleVenta.forEach(System.out::println);
+
         return detalleVenta.map(DetalleVentaMapper::mapToDetalleVentaDto);
     }
 

@@ -8,8 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface TipoVentaRepository extends JpaRepository<TipoVenta, Long> {
-    @Query("SELECT o FROM TipoVenta o WHERE " +
+   @Query("SELECT o FROM TipoVenta o WHERE " +
             "(:status IS NULL OR o.status = :status) AND " +
-            "(:id IS NULL OR o.organization.idOrganization = :id)")
+           "(:id IS NULL OR o.organization.idOrganization = :id)")
+
     Page<TipoVenta> findByFilters(@Param("status") Boolean status, @Param("id") Long id, Pageable pageable);
 }
