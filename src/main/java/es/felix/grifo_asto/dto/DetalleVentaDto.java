@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.Date;
+
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +18,7 @@ public class DetalleVentaDto {
     private String persona;
     private String placa;
     private String area;
-    private Date fechaVenta;
+    private LocalDate fechaVenta;
     private Double diesel;
     private Double regular;
     private Double premiun;

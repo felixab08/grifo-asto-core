@@ -2,7 +2,6 @@ package es.felix.grifo_asto.controller;
 
 import es.felix.grifo_asto.config.Constants;
 import es.felix.grifo_asto.dto.DetalleVentaDto;
-import es.felix.grifo_asto.dto.TipoVentaDto;
 import es.felix.grifo_asto.dto.filter.FilterDto;
 import es.felix.grifo_asto.service.DetalleVentaService;
 import es.felix.grifo_asto.shared.PaginationResponse;
@@ -40,8 +39,8 @@ public class DetalleVentaController {
     @GetMapping("/list")
     public ResponseEntity<PaginationResponse<DetalleVentaDto>> getAllDetalleVenta(
             Pageable pageable,
-            @RequestParam(required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-            @RequestParam(required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
             @RequestParam(required = true) Long id) {
 
         FilterDto filterDto = FilterDto.builder()

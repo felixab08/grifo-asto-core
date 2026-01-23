@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -31,7 +31,7 @@ public class DetalleVenta {
     private String area;
 
     @Column(name = "fecha_venta",nullable = false)
-    private Date fechaVenta;
+    private LocalDate fechaVenta;
 
     @Column(name = "diesel")
     private Double diesel;

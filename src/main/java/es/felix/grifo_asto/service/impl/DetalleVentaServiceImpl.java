@@ -3,18 +3,20 @@ package es.felix.grifo_asto.service.impl;
 import es.felix.grifo_asto.dto.DetalleVentaDto;
 import es.felix.grifo_asto.dto.filter.FilterDto;
 import es.felix.grifo_asto.entity.DetalleVenta;
-import es.felix.grifo_asto.entity.TipoVenta;
 import es.felix.grifo_asto.exception.ResourceNotFoundException;
 import es.felix.grifo_asto.mapper.DetalleVentaMapper;
-import es.felix.grifo_asto.mapper.TipoVentaMapper;
 import es.felix.grifo_asto.repository.DetalleVentaRepository;
 import es.felix.grifo_asto.service.DetalleVentaService;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import static es.felix.grifo_asto.config.Constants.NOT_FOUND_TIPO_VENTA;
+
+import java.time.LocalDateTime;
+
 import static es.felix.grifo_asto.config.Constants.NOT_FOUND_VENTA_DETALLE;
 
 @Service
@@ -22,6 +24,7 @@ import static es.felix.grifo_asto.config.Constants.NOT_FOUND_VENTA_DETALLE;
 public class DetalleVentaServiceImpl implements DetalleVentaService {
 
     private DetalleVentaRepository detalleVentaRepository;
+    private static final Logger log = LoggerFactory.getLogger(DetalleVentaServiceImpl.class);
 
     @Override
     public DetalleVentaDto createDetalleVenta(DetalleVentaDto dto) {
@@ -43,10 +46,10 @@ public class DetalleVentaServiceImpl implements DetalleVentaService {
         return DetalleVentaMapper.mapToDetalleVentaDto(detalleVentaRepository.save(detalleVenta));
     }
 
-
     @Override
     public Page<DetalleVentaDto> getDetalleVenta(FilterDto filterDto, Pageable pageable) {
-        Page<DetalleVenta> detalleVenta = detalleVentaRepository.findByFilters(filterDto.getId(), pageable);
+        log.info("FILTRO: {}", filterDto);
+        Page<DetalleVenta> detalleVenta = detalleVentaRepository.findByFilters(filterDto.getId(), filterDto.getStartDate(), filterDto.getEndDate(), pageable);
         return detalleVenta.map(DetalleVentaMapper::mapToDetalleVentaDto);
     }
 

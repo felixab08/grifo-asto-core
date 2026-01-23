@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/persona")
 public class PersonaController {
     PersonaService personaService;
-    private static final Logger log = LoggerFactory.getLogger(MedicionController.class);
+    private static final Logger log = LoggerFactory.getLogger(PersonaController.class);
 
     @PostMapping("/registrar")
     public ResponseEntity<PersonaDto> createPersona(@RequestBody PersonaDto personaDto) {
