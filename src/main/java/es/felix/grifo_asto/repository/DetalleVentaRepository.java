@@ -13,7 +13,7 @@ public interface DetalleVentaRepository extends JpaRepository<DetalleVenta, Long
     @Query("SELECT d FROM DetalleVenta d WHERE"+
             "(d.tipoVenta.idTipoVenta = :id) AND" +
             "(d.fechaVenta >= :startDate) AND " +
-            "(d.fechaVenta  <= :endDate)"
+            "(d.fechaVenta  <= :endDate) ORDER BY d.fechaVenta ASC"
     )
     Page<DetalleVenta> findByFilters(@Param("id") Long id, @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate, Pageable pageable);
 }

@@ -31,7 +31,7 @@ public class DetalleVentaController {
         DetalleVentaDto update = detalleVentaService.updateDetalleVenta(id, detalleVentaDto);
         return new  ResponseEntity<>(update, HttpStatus.OK);
     }
-    @DeleteMapping("{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> deleteDetalleVentaById(@PathVariable("id") Long id){
         detalleVentaService.deleteDetalleVenta(id);
         return ResponseEntity.ok(Constants.DELETE_MESAJE);

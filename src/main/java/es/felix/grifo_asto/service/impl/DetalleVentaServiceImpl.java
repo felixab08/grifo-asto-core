@@ -29,8 +29,13 @@ public class DetalleVentaServiceImpl implements DetalleVentaService {
 
     @Override
     public DetalleVentaDto createDetalleVenta(DetalleVentaDto dto) {
+        log.info("dto<<<<<crear {}", dto);
+
         DetalleVenta detalleVenta = DetalleVentaMapper.mapToDetalleVenta(dto);
-        return DetalleVentaMapper.mapToDetalleVentaDto(detalleVentaRepository.save(detalleVenta));
+
+        DetalleVenta detalleVentaSave = detalleVentaRepository.save(detalleVenta);
+
+        return DetalleVentaMapper.mapToDetalleVentaDto(detalleVentaSave);
     }
 
     @Override
@@ -49,7 +54,6 @@ public class DetalleVentaServiceImpl implements DetalleVentaService {
 
     @Override
     public Page<DetalleVentaDto> getDetalleVenta(FilterDto filterDto, Pageable pageable) {
-        log.info("filterDto: {}", filterDto);
         LocalDate start = filterDto.getStartDate() != null
                 ? filterDto.getStartDate()
                 : LocalDate.of(2026, 1, 1);
@@ -57,14 +61,7 @@ public class DetalleVentaServiceImpl implements DetalleVentaService {
         LocalDate end = filterDto.getEndDate() != null
                 ? filterDto.getEndDate()
                 : LocalDate.now();
-        log.info("start: {}", start);
-        log.info("end: {}", end);
         var detalleVenta = detalleVentaRepository.findByFilters(filterDto.getId(), start, end, pageable);
-
-
-
-        detalleVenta.forEach(System.out::println);
-
         return detalleVenta.map(DetalleVentaMapper::mapToDetalleVentaDto);
     }
 

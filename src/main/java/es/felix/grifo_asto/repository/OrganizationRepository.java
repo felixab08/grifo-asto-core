@@ -10,6 +10,6 @@ import org.springframework.data.domain.Pageable;
 public interface OrganizationRepository extends JpaRepository<Organization, Long> {
     @Query("SELECT o FROM Organization o WHERE " +
            "(:status IS NULL OR o.status = :status) AND " +
-           "(:searchTerm IS NULL OR LOWER(o.nombreOrganization) LIKE LOWER(:searchTerm) OR LOWER(o.ruc) LIKE LOWER(:searchTerm))")
+           "(:searchTerm IS NULL OR LOWER(o.nombreOrganization) LIKE LOWER(:searchTerm))  ORDER BY o.idOrganization DESC")
     Page<Organization> findByFilters(@Param("status") Boolean status, @Param("searchTerm") String searchTerm, Pageable pageable);
 }

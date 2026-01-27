@@ -5,21 +5,21 @@ import es.felix.grifo_asto.entity.TipoVenta;
 
 public class TipoVentaMapper {
     public static TipoVentaDto mapToTipoVentaDto(TipoVenta ent) {
-        return new TipoVentaDto(
-                ent.getIdTipoVenta(),
-                ent.getTipo(),
-                ent.getCodigo(),
-                ent.getStatus(),
-                ent.getOrganization()
-        );
+       TipoVentaDto entDto =  new TipoVentaDto();
+                entDto.setIdTipoVenta(ent.getIdTipoVenta());
+                entDto.setTipo(ent.getTipo());
+                entDto.setCodigo(ent.getCodigo());
+                entDto.setStatus(ent.getStatus());
+                entDto.setOrganization(ent.getOrganization());
+        return entDto;
     }
     public static TipoVenta mapToTipoVenta(TipoVentaDto entDto) {
-        return new TipoVenta(
-                entDto.getIdTipoVenta(),
-                entDto.getTipo(),
-                entDto.getCodigo(),
-                entDto.getStatus(),
-                entDto.getOrganization()
-        );
+       TipoVenta ent = new TipoVenta();
+                ent.setIdTipoVenta(entDto.getIdTipoVenta());
+                ent.setTipo(entDto.getTipo());
+                ent.setCodigo(entDto.getCodigo());
+                ent.setStatus(entDto.getStatus());
+                ent.setOrganization(entDto.getOrganization());
+        return ent;
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 public interface TipoVentaRepository extends JpaRepository<TipoVenta, Long> {
    @Query("SELECT o FROM TipoVenta o WHERE " +
             "(:status IS NULL OR o.status = :status) AND " +
-           "(:id IS NULL OR o.organization.idOrganization = :id)")
+           "(:id IS NULL OR o.organization.idOrganization = :id) ORDER BY o.idTipoVenta DESC")
 
     Page<TipoVenta> findByFilters(@Param("status") Boolean status, @Param("id") Long id, Pageable pageable);
 }
