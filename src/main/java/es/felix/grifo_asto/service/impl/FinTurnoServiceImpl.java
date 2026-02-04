@@ -76,10 +76,10 @@ public class FinTurnoServiceImpl implements FinTurnoService {
                         String code = m.getCode();
                         if (code.contains("pet11")) return 1;
                         if (code.contains("pet21")) return 2;
-                        if (code.contains("reg12")) return 3;
-                        if (code.contains("reg22")) return 4;
-                        if (code.contains("pri13")) return 5;
-                        if (code.contains("pri23")) return 6;
+                        if (code.contains("pri13")) return 3;
+                        if (code.contains("pri23")) return 4;
+                        if (code.contains("reg12")) return 5;
+                        if (code.contains("reg22")) return 6;
                         return 7;
                     }))
                     .map(m -> new MedidaDto(

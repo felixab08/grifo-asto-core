@@ -11,6 +11,9 @@ public class TipoVentaMapper {
                 entDto.setCodigo(ent.getCodigo());
                 entDto.setStatus(ent.getStatus());
                 entDto.setOrganization(ent.getOrganization());
+                entDto.setPremiun(ent.getPremiun());
+                entDto.setDiesel(ent.getDiesel());
+                entDto.setRegular(ent.getRegular());
         return entDto;
     }
     public static TipoVenta mapToTipoVenta(TipoVentaDto entDto) {
@@ -20,6 +23,9 @@ public class TipoVentaMapper {
                 ent.setCodigo(entDto.getCodigo());
                 ent.setStatus(entDto.getStatus());
                 ent.setOrganization(entDto.getOrganization());
+                ent.setPremiun(entDto.getPremiun());
+                ent.setDiesel(entDto.getDiesel());
+                ent.setRegular(entDto.getRegular());
         return ent;
     }
 }

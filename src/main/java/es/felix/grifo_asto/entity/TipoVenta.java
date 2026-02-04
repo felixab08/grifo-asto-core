@@ -25,6 +25,15 @@ public class TipoVenta {
     @Column(name="status", nullable = false)
     private Boolean status;
 
+    @Column(name = "diesel")
+    private Double diesel;
+
+    @Column(name = "regular")
+    private Double regular;
+
+    @Column(name = "premiun")
+    private Double premiun;
+
     @ManyToOne
     @JoinColumn(name="id_organization", referencedColumnName = "id_organization")
     private Organization organization;

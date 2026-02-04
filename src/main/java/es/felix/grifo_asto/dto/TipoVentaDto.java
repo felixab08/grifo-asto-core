@@ -15,4 +15,7 @@ public class TipoVentaDto {
     private String codigo;
     private Boolean status;
     private Organization organization;
+    private Double diesel;
+    private Double regular;
+    private Double premiun;
 }

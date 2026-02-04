@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  java_app:
-    container_name: java_app
+  grifo_java_app:
+    container_name: grifo_java_app
     build:
       context: .
       dockerfile: Dockerfile
@@ -17,6 +17,8 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     depends_on:
       - postgres
+    networks:
+      - grifo-asto-net
 
   postgres:
     image: postgres:15
@@ -30,6 +32,13 @@ services:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - grifo-asto-net
 
 volumes:
   postgres_data:
+
+networks:
+  grifo-asto-net:
+    name: grifo-asto-net
+    driver: bridge

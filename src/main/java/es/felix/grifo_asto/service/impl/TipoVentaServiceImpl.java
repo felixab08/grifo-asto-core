@@ -33,6 +33,9 @@ public class TipoVentaServiceImpl implements TipoVentaService {
         tipoVenta.setTipo(tipoVentaDto.getTipo());
         tipoVenta.setStatus(tipoVentaDto.getStatus());
         tipoVenta.setCodigo(tipoVentaDto.getCodigo());
+        tipoVenta.setDiesel(tipoVentaDto.getDiesel());
+        tipoVenta.setRegular(tipoVentaDto.getRegular());
+        tipoVenta.setPremiun(tipoVentaDto.getPremiun());
         return TipoVentaMapper.mapToTipoVentaDto(tipoVentaRepository.save(tipoVenta));
     }
 
