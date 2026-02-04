@@ -2,6 +2,10 @@ package es.felix.grifo_asto.service;
 
 import es.felix.grifo_asto.dto.FinTurnoDto;
 import es.felix.grifo_asto.dto.FinTurnoResponse;
+import es.felix.grifo_asto.dto.ReporteFinTurnoResponse;
+import es.felix.grifo_asto.dto.request.turno.FinTurnoFilterDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -12,7 +16,9 @@ public interface FinTurnoService {
 
     List<FinTurnoDto> listAllFinTurnos();
 
+    ReporteFinTurnoResponse ReporteAllFinTurnos(int year);
+
     FinTurnoResponse getFinTurnosByPersona(Long idPersona, int size);
 
-    org.springframework.data.domain.Page<FinTurnoDto> getAllFinTurnos(es.felix.grifo_asto.dto.request.turno.FinTurnoFilterDto filter, org.springframework.data.domain.Pageable pageable);
+    Page<FinTurnoDto> getAllFinTurnos(FinTurnoFilterDto filter, Pageable pageable);
 }

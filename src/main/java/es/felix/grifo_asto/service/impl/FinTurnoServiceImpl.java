@@ -18,8 +18,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static es.felix.grifo_asto.config.Constants.NOT_FOUND_TURNO;
@@ -51,6 +52,52 @@ public class FinTurnoServiceImpl implements FinTurnoService {
     public List<FinTurnoDto> listAllFinTurnos() {
         List<FinTurno> finTurnos = finTurnoRepository.findAll();
         return finTurnos.stream().map(FinTurnoMapper::toFinTurnoDto).toList();
+    }
+
+    @Override
+    public ReporteFinTurnoResponse ReporteAllFinTurnos(int year) {
+        List<Double> valores = new ArrayList<>();
+        List<String> meses = new ArrayList<>();
+        LocalDate today = LocalDate.now();
+        int currentMonth = today.getMonthValue();
+        int currentYear = today.getYear();
+        
+        String[] nombresMeses = {"enero", "febrero", "marzo", "abril", "mayo", "junio",
+                                 "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"};
+        
+        for (int month = 1; month <= 12; month++) {
+            // Si es el año actual, solo procesar hasta el mes actual
+            if (year == currentYear && month > currentMonth) {
+                break;
+            }
+            
+            // Agregar nombre del mes
+            meses.add(nombresMeses[month - 1]);
+            
+            // Calcular fecha inicio y fin del mes
+            LocalDate startDate = LocalDate.of(year, month, 1);
+            LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
+            
+            // Convertir a Date
+            Date start = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            Date end = Date.from(endDate.atTime(23, 59, 59).atZone(ZoneId.systemDefault()).toInstant());
+            
+            // Buscar registros del mes
+            List<RegistroMedidor> registros = registroMedidorRepository.findByIdTurno_FechaEntradaBetween(start, end);
+            
+            // Calcular suma de salidas menos entradas
+            double totalMes = registros.stream()
+                    .mapToDouble(rm -> {
+                        Double salida = rm.getSalida() != null ? rm.getSalida() : 0.0;
+                        Double entrada = rm.getEntrada() != null ? rm.getEntrada() : 0.0;
+                        return salida - entrada;
+                    })
+                    .sum();
+            
+            valores.add(totalMes);
+        }
+        
+        return new ReporteFinTurnoResponse(200, valores, meses);
     }
 
     @Override
@@ -116,4 +163,5 @@ public class FinTurnoServiceImpl implements FinTurnoService {
                 List.of(personaTurnosDto)
         );
     }
+
 }

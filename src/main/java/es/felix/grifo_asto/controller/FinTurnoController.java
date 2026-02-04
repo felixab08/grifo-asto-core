@@ -2,6 +2,7 @@ package es.felix.grifo_asto.controller;
 
 import es.felix.grifo_asto.dto.FinTurnoDto;
 import es.felix.grifo_asto.dto.FinTurnoResponse;
+import es.felix.grifo_asto.dto.ReporteFinTurnoResponse;
 import es.felix.grifo_asto.dto.request.turno.FinTurnoFilterDto;
 import es.felix.grifo_asto.service.FinTurnoService;
 import es.felix.grifo_asto.shared.PaginationResponse;
@@ -13,6 +14,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.*;
 
 
@@ -50,5 +54,11 @@ public class FinTurnoController {
         log.info("Findo de entrada:{}", finTurnoDto);
         FinTurnoDto turno = finTurnoService.updateFinTurno(id, finTurnoDto);
         return new  ResponseEntity<>(turno, HttpStatus.OK);
+    }
+    
+    @GetMapping("/reporte/{year}")
+    public ResponseEntity<ReporteFinTurnoResponse> getReporteAllFinTurnos(@PathVariable int year) {
+        ReporteFinTurnoResponse response = finTurnoService.ReporteAllFinTurnos(year);
+        return ResponseEntity.ok(response);
     }
 }
