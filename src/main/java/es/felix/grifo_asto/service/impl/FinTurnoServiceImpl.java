@@ -56,14 +56,14 @@ public class FinTurnoServiceImpl implements FinTurnoService {
 
     @Override
     public ReporteFinTurnoResponse ReporteAllFinTurnos(int year) {
-        List<Double> valores = new ArrayList<>();
+        List<Integer> valores = new ArrayList<>();
         List<String> meses = new ArrayList<>();
         LocalDate today = LocalDate.now();
         int currentMonth = today.getMonthValue();
         int currentYear = today.getYear();
         
-        String[] nombresMeses = {"enero", "febrero", "marzo", "abril", "mayo", "junio",
-                                 "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"};
+        String[] nombresMeses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                                 "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
         
         for (int month = 1; month <= 12; month++) {
             // Si es el año actual, solo procesar hasta el mes actual
@@ -94,10 +94,10 @@ public class FinTurnoServiceImpl implements FinTurnoService {
                     })
                     .sum();
             
-            valores.add(totalMes);
+            valores.add((int) Math.round(totalMes));
         }
         
-        return new ReporteFinTurnoResponse(200, valores, meses);
+        return new ReporteFinTurnoResponse(200,  valores, meses);
     }
 
     @Override

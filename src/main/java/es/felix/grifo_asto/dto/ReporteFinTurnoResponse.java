@@ -11,6 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 public class ReporteFinTurnoResponse {
     private int code;
-    private List<Double> valores;
+    private List<Integer> valores;
     private List<String> meses;
 }
