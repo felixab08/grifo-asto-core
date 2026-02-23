@@ -15,6 +15,7 @@ import es.felix.grifo_asto.dto.request.turno.FinTurnoFilterDto;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -112,7 +113,7 @@ public class FinTurnoServiceImpl implements FinTurnoService {
         Persona persona = personaRepository.findById(idPersona)
                 .orElseThrow(() -> new ResourceNotFoundException("Persona no encontrada con id: " + idPersona));
 
-        Pageable pageable = org.springframework.data.domain.PageRequest.of(0, size, org.springframework.data.domain.Sort.by("fechaEntrada").descending());
+        Pageable pageable = org.springframework.data.domain.PageRequest.of(0, size, Sort.by("fechaEntrada").descending());
         List<FinTurno> turnos = finTurnoRepository.findByPersona_IdPersona(idPersona, pageable);
 
         List<TurnoDetailDto> turnoDetails = turnos.stream().map(turno -> {

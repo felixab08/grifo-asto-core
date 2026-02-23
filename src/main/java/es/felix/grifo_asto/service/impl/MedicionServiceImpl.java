@@ -9,6 +9,7 @@ import es.felix.grifo_asto.service.MedicionService;
 import lombok.AllArgsConstructor;
 
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,7 +26,7 @@ public class MedicionServiceImpl implements MedicionService {
     }
 
     @Override
-    public org.springframework.data.domain.Page<MedicionDto> getAllMedicion(org.springframework.data.domain.Pageable pageable) {
+    public org.springframework.data.domain.Page<MedicionDto> getAllMedicion(Pageable pageable) {
         org.springframework.data.domain.Page<Medicion> mediciones = medicionRepository.findAll(pageable);
         return mediciones.map(MedicionMapper::mapToMedicionDto);
     }

@@ -3,6 +3,7 @@ package es.felix.grifo_asto.controller;
 
 import es.felix.grifo_asto.dto.EntradaCombustibleDto;
 import es.felix.grifo_asto.service.EntradaCombustibleService;
+import es.felix.grifo_asto.shared.PaginationResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,10 @@ public class EntradaCombustibleController {
     EntradaCombustibleService entradaCombustibleSrv;
 
     @GetMapping("/list")
-    public ResponseEntity<es.felix.grifo_asto.shared.PaginationResponse<EntradaCombustibleDto>> getAllEntradas(
+    public ResponseEntity<PaginationResponse<EntradaCombustibleDto>> getAllEntradas(
             org.springframework.data.domain.Pageable pageable) {
         org.springframework.data.domain.Page<EntradaCombustibleDto> page = entradaCombustibleSrv.getAllEntradasCombustible(pageable);
-        return ResponseEntity.ok(es.felix.grifo_asto.shared.PaginationResponse.fromPage(page));
+        return ResponseEntity.ok(PaginationResponse.fromPage(page));
     }
 
     @PostMapping("/registrar")

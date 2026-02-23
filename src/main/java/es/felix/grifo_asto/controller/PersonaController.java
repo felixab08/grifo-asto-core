@@ -3,9 +3,12 @@ package es.felix.grifo_asto.controller;
 
 import es.felix.grifo_asto.dto.PersonaDto;
 import es.felix.grifo_asto.service.PersonaService;
+import es.felix.grifo_asto.shared.PaginationResponse;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,10 +44,9 @@ public class PersonaController {
     }
     // Biuld Get All Personas REST API
     @GetMapping("/list")
-    public ResponseEntity<es.felix.grifo_asto.shared.PaginationResponse<PersonaDto>> getAllPersonas(
-            org.springframework.data.domain.Pageable pageable) {
-        org.springframework.data.domain.Page<PersonaDto> page = personaService.getAllPersonas(pageable);
-        return ResponseEntity.ok(es.felix.grifo_asto.shared.PaginationResponse.fromPage(page));
+    public ResponseEntity<PaginationResponse<PersonaDto>> getAllPersonas(Pageable pageable) {
+        Page<PersonaDto> page = personaService.getAllPersonas(pageable);
+        return ResponseEntity.ok(PaginationResponse.fromPage(page));
     }
 
     // Build Delete Persola REST API

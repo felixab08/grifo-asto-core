@@ -56,7 +56,7 @@ public class FinTurnoController {
         return new  ResponseEntity<>(turno, HttpStatus.OK);
     }
     
-    @GetMapping("/reporte/{year}")
+        @GetMapping("/reporte/{year}")
     public ResponseEntity<ReporteFinTurnoResponse> getReporteAllFinTurnos(@PathVariable int year) {
         ReporteFinTurnoResponse response = finTurnoService.ReporteAllFinTurnos(year);
         return ResponseEntity.ok(response);

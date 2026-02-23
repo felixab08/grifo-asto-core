@@ -4,7 +4,10 @@ import es.felix.grifo_asto.dto.MedicionRequestDto;
 
 import es.felix.grifo_asto.dto.MedicionDto;
 import es.felix.grifo_asto.service.MedicionService;
+import es.felix.grifo_asto.shared.PaginationResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,9 +29,8 @@ public class MedicionController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<es.felix.grifo_asto.shared.PaginationResponse<MedicionDto>> getAllMediciones(
-            org.springframework.data.domain.Pageable pageable) {
-        org.springframework.data.domain.Page<MedicionDto> page = medicionService.getAllMedicion(pageable);
-        return ResponseEntity.ok(es.felix.grifo_asto.shared.PaginationResponse.fromPage(page));
+    public ResponseEntity<PaginationResponse<MedicionDto>> getAllMediciones(Pageable pageable) {
+        Page<MedicionDto> page = medicionService.getAllMedicion(pageable);
+        return ResponseEntity.ok(PaginationResponse.fromPage(page));
     }
 }
