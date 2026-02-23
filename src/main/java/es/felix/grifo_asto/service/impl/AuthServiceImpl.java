@@ -143,4 +143,35 @@ public class AuthServiceImpl implements AuthService {
                 persona.getRole().name()
         );
     }
+
+    @Override
+    public LoginResponseDto checkStatus(String token) {
+        log.debug("Verificando estado del token");
+
+        // Validar token (esto lanzará excepción si es inválido o expirado)
+        tokenProvider.validateToken(token);
+
+        // Extraer username
+        String username = tokenProvider.getUsernameFromJWT(token);
+
+        // Buscar persona por username o email
+        Persona persona = personaRepository.findByUsernameOrEmail(username, username)
+                .orElseThrow(() -> {
+                    log.error("Usuario no encontrado para el token validado: {}", username);
+                    return new InvalidCredentialsException(Constants.INVALID_CREDENTIALS);
+                });
+
+        log.info("Token verificado exitosamente para el usuario: {}", username);
+
+        return new LoginResponseDto(
+                token,
+                persona.getIdPersona(),
+                persona.getNombre(),
+                persona.getApellido(),
+                persona.getTelefono(),
+                persona.getEmail(),
+                persona.getUsername(),
+                persona.getRole().name()
+        );
+    }
 }

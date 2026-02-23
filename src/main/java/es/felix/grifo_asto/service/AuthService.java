@@ -7,4 +7,5 @@ import es.felix.grifo_asto.dto.RegisterRequestDto;
 public interface AuthService {
     LoginResponseDto login(LoginRequestDto loginRequestDto);
     LoginResponseDto register(RegisterRequestDto registerRequestDto);
+    LoginResponseDto checkStatus(String token);
 }

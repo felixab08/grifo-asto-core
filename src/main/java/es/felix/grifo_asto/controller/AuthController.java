@@ -51,4 +51,25 @@ public class AuthController {
         log.info("Usuario registrado exitosamente");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @GetMapping("/check-status")
+    public ResponseEntity<GeneralResponse<LoginResponseDto>> checkStatus(@RequestHeader("Authorization") String token) {
+        log.debug("Petición de verificación de estado recibida");
+
+        // El token viene como "Bearer <token>", extraemos solo el hash
+        if (token != null && token.startsWith("Bearer ")) {
+            token = token.substring(7);
+        }
+
+        LoginResponseDto loginResponse = authService.checkStatus(token);
+
+        GeneralResponse<LoginResponseDto> response = GeneralResponse.<LoginResponseDto>builder()
+                .code(HttpStatus.OK.value())
+                .message("Token válido")
+                .data(loginResponse)
+                .build();
+
+        log.info("Token verificado exitosamente");
+        return ResponseEntity.ok(response);
+    }
 }
