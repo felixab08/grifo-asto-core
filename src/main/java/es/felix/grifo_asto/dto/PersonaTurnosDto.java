@@ -1,10 +1,9 @@
 package es.felix.grifo_asto.dto;
 
+import es.felix.grifo_asto.shared.PaginationResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -13,5 +12,5 @@ public class PersonaTurnosDto {
     private Long idPersona;
     private String nombre;
     private String apellido;
-    private List<TurnoDetailDto> turnos;
+    private PaginationResponse<TurnoDetailDto> turnos;
 }

@@ -12,6 +12,7 @@ import es.felix.grifo_asto.repository.RegistroMedidorRepository;
 import es.felix.grifo_asto.service.FinTurnoService;
 import es.felix.grifo_asto.repository.specification.FinTurnoSpecification;
 import es.felix.grifo_asto.dto.request.turno.FinTurnoFilterDto;
+import es.felix.grifo_asto.shared.PaginationResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -109,14 +110,13 @@ public class FinTurnoServiceImpl implements FinTurnoService {
     }
 
     @Override
-    public FinTurnoResponse getFinTurnosByPersona(Long idPersona, int size) {
+    public FinTurnoResponse getFinTurnosByPersona(Long idPersona, Pageable pageable) {
         Persona persona = personaRepository.findById(idPersona)
                 .orElseThrow(() -> new ResourceNotFoundException("Persona no encontrada con id: " + idPersona));
 
-        Pageable pageable = org.springframework.data.domain.PageRequest.of(0, size, Sort.by("fechaEntrada").descending());
-        List<FinTurno> turnos = finTurnoRepository.findByPersona_IdPersona(idPersona, pageable);
+        Page<FinTurno> turnosPage = finTurnoRepository.findByPersona_IdPersona(idPersona, pageable);
 
-        List<TurnoDetailDto> turnoDetails = turnos.stream().map(turno -> {
+        List<TurnoDetailDto> turnoDetails = turnosPage.getContent().stream().map(turno -> {
             List<RegistroMedidor> medidas = registroMedidorRepository.findByIdTurno_IdTurno(turno.getIdTurno());
             
             List<MedidaDto> medidaDtos = medidas.stream()
@@ -151,11 +151,13 @@ public class FinTurnoServiceImpl implements FinTurnoService {
             );
         }).collect(Collectors.toList());
 
+        PaginationResponse<TurnoDetailDto> paginatedTurnos = PaginationResponse.fromPage(turnosPage, turnoDetails);
+
         PersonaTurnosDto personaTurnosDto = new PersonaTurnosDto(
                 persona.getIdPersona(),
                 persona.getNombre(),
                 persona.getApellido(),
-                turnoDetails
+                paginatedTurnos
         );
 
         return new FinTurnoResponse(
