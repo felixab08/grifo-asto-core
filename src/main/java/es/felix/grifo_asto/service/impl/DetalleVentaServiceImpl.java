@@ -8,15 +8,12 @@ import es.felix.grifo_asto.mapper.DetalleVentaMapper;
 import es.felix.grifo_asto.repository.DetalleVentaRepository;
 import es.felix.grifo_asto.service.DetalleVentaService;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import static es.felix.grifo_asto.config.Constants.NOT_FOUND_VENTA_DETALLE;
 
@@ -25,11 +22,9 @@ import static es.felix.grifo_asto.config.Constants.NOT_FOUND_VENTA_DETALLE;
 public class DetalleVentaServiceImpl implements DetalleVentaService {
 
     private DetalleVentaRepository detalleVentaRepository;
-    private static final Logger log = LoggerFactory.getLogger(DetalleVentaServiceImpl.class);
 
     @Override
     public DetalleVentaDto createDetalleVenta(DetalleVentaDto dto) {
-        log.info("dto<<<<<crear {}", dto);
 
         DetalleVenta detalleVenta = DetalleVentaMapper.mapToDetalleVenta(dto);
 

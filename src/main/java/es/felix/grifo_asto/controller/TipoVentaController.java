@@ -1,6 +1,5 @@
 package es.felix.grifo_asto.controller;
 
-import es.felix.grifo_asto.dto.OrganizationDto;
 import es.felix.grifo_asto.dto.TipoVentaDto;
 import es.felix.grifo_asto.dto.filter.FilterDto;
 import es.felix.grifo_asto.service.TipoVentaService;

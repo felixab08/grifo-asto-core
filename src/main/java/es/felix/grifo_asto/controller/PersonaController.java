@@ -5,8 +5,6 @@ import es.felix.grifo_asto.dto.PersonaDto;
 import es.felix.grifo_asto.service.PersonaService;
 import es.felix.grifo_asto.shared.PaginationResponse;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/persona")
 public class PersonaController {
     PersonaService personaService;
-    private static final Logger log = LoggerFactory.getLogger(PersonaController.class);
 
     @PostMapping("/registrar")
     public ResponseEntity<PersonaDto> createPersona(@RequestBody PersonaDto personaDto) {
