@@ -37,21 +37,4 @@ public class RegistroMedidorController {
         return ResponseEntity.ok(respuestaGeneral);
     }
 
-
-//    @GetMapping("/list")
-//    public ResponseEntity<GeneralResponse<List<RegistroMedidorDto>>> getAllRegistroMedidor() {
-//        List<RegistroMedidorDto> listaAll = registroMedidorSrv.getAllRegistroMedidores();
-//        GeneralResponse<List<RegistroMedidorDto>> respuestaGeneral = new GeneralResponse<>();
-//        try {
-//            respuestaGeneral.setCode(200);
-//            respuestaGeneral.setMessage("OK");
-//            respuestaGeneral.setData(listaAll);
-//        } catch (Exception e) {
-//            respuestaGeneral.setCode(500);
-//            respuestaGeneral.setMessage(e.getMessage());
-//            respuestaGeneral.setData(null);
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuestaGeneral);
-//        }
-//        return ResponseEntity.ok(respuestaGeneral);
-//    }
 }

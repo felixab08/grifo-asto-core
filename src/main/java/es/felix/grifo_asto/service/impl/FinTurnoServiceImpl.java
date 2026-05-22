@@ -161,7 +161,7 @@ public class FinTurnoServiceImpl implements FinTurnoService {
         return new FinTurnoResponse(
                 "Lista de cierres de atencion de una persona",
                 200,
-                List.of(personaTurnosDto)
+                personaTurnosDto
         );
     }
 

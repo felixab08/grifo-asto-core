@@ -11,6 +11,10 @@ docker rm java_app
 # 3. elimina imagen
 docker rmi grifo-java-app:1.0.0
 
-# 4. reconstruya las imágenes antes de iniciar los servicios
+# 4. elimina imagen
+.\mvnw.cmd clean test-compile
+./mvnw clean package -DskipTests  
+
+# 5. reconstruya las imágenes antes de iniciar los servicios
 docker-compose up -d
 ```

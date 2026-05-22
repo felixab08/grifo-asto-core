@@ -38,8 +38,6 @@ public class PersonaController {
     @GetMapping("{id}")
     public ResponseEntity<PersonaDto> getPersonaById(@PathVariable("id") Long id){
         PersonaDto personaDto = personaService.getPersonaById(id);
-        log.info("CONTROLLER LISTAR PERSONA: {}", personaDto);
-
         return ResponseEntity.ok(personaDto);
     }
     // Biuld Get All Personas REST API

@@ -25,18 +25,11 @@ public class EntradaCombustible {
     @Column(name="cantidad", nullable = false)
     private Integer cantidad;
 
-    @Column(name = "fecha_entrada",updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @CreationTimestamp
+    @Column(name = "fecha_entrada")
     private Date fechaEntrada;
 
     @ManyToOne
     @JoinColumn(name="id_persona", referencedColumnName = "idPersona")
     private Persona persona;
 
-    public EntradaCombustible(Long idEntrada, String tipo, Integer cantidad, Date fechaEntrada) {
-        this.idEntrada = idEntrada;
-        this.tipo = tipo;
-        this.cantidad = cantidad;
-        this.fechaEntrada = fechaEntrada;
-    }
 }

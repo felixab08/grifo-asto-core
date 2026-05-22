@@ -42,7 +42,7 @@ public class PersonaServiceImpl implements PersonaService {
     @Override
     public PersonaDto getPersonaById(Long id) {
       Persona persona =  personaRepository.findById(id)
-                .orElseThrow(() -> new InternalException("No existe la persona" + id));
+                .orElseThrow(() -> new InternalException(NOT_FOUND_PERSON + id));
         return PersonaMapper.mapToPersonaDto(persona);
     }
 
@@ -55,7 +55,7 @@ public class PersonaServiceImpl implements PersonaService {
     @Override
     public void deletePersona(Long id) {
         personaRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No existe la persona" + id));
+                .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_PERSON + id));
         personaRepository.deleteById(id);
     }
 }

@@ -14,9 +14,9 @@ public class FinTurnoResponse {
     private String messaje;
     private String code;
     private int status;
-    private List<PersonaTurnosDto> data;
+    private PersonaTurnosDto data;
 
-    public FinTurnoResponse(String string, int i, List<PersonaTurnosDto> of) {
+    public FinTurnoResponse(String string, int i, PersonaTurnosDto of) {
         this.messaje = string;
         this.code = string;
         this.status = i;

@@ -2,6 +2,7 @@ package es.felix.grifo_asto.service.impl;
 
 import es.felix.grifo_asto.dto.EntradaCombustibleDto;
 import es.felix.grifo_asto.entity.EntradaCombustible;
+import es.felix.grifo_asto.exception.ResourceNotFoundException;
 import es.felix.grifo_asto.mapper.EntradaCombustibleMapper;
 import es.felix.grifo_asto.repository.EntradaCombustibleRepository;
 import es.felix.grifo_asto.service.EntradaCombustibleService;
@@ -25,8 +26,24 @@ public class EntradaCombustibleServiceImpl implements EntradaCombustibleService 
     }
 
     @Override
+    public EntradaCombustibleDto updateEntradaCombustible(Long id, EntradaCombustibleDto entadaComDto) {
+        EntradaCombustible entrada = entradaCombustibleRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No existe el dato"));
+        entrada.setFechaEntrada(entadaComDto.getFechaEntrada());
+        entrada.setCantidad(entadaComDto.getCantidad());
+        entrada.setTipo(entadaComDto.getTipo());
+        entrada.setPersona(entadaComDto.getPersona());
+        return EntradaCombustibleMapper.mapToEntradaCombustibleDto(entradaCombustibleRepository.save(entrada));
+    }
+
+    @Override
     public Page<EntradaCombustibleDto> getAllEntradasCombustible(Pageable pageable) {
         Page<EntradaCombustible> entradaCombustible =  entradaCombustibleRepository.findAll(pageable);
         return entradaCombustible.map(EntradaCombustibleMapper::mapToEntradaCombustibleDto);
+    }
+
+    @Override
+    public void deleteEntradaCombustible(Long id) {
+        entradaCombustibleRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No existe el dato"));
+        entradaCombustibleRepository.deleteById(id);
     }
 }
