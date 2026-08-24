@@ -47,9 +47,11 @@ public class SecurityConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of(
+        configuration.setAllowedOriginPatterns(List.of(
                 "https://felixab08.github.io",
-                "http://localhost:4200"));
+                "http://localhost:4200",
+                "http://localhost:*"
+        ));
 
         configuration.setAllowedMethods(Arrays.asList(
                 "GET",
