@@ -33,3 +33,8 @@ build/
 .vscode/
 ### Frontend ###
 /src/main/resources/static/
+
+### environment variables ###
+.env
+.env.local
+.env.prod

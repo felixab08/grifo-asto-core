@@ -120,7 +120,7 @@ public class FinTurnoServiceImpl implements FinTurnoService {
             
             List<MedidaDto> medidaDtos = medidas.stream()
                     .sorted(Comparator.comparing((RegistroMedidor m) -> {
-                        String code = m.getCode();
+                        String code = m.getCode() != null ? m.getCode() : "";
                         if (code.contains("pet11")) return 1;
                         if (code.contains("pet21")) return 2;
                         if (code.contains("pri13")) return 3;
