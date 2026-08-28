@@ -24,7 +24,7 @@ public class Medicion {
    @JoinColumn(name = "idpersona", nullable = false)
     private Persona idPersona;
 
-    @Column(name = "fecha_medicion",updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "fecha_medicion", updatable = false, columnDefinition = "DATE DEFAULT CURRENT_DATE")
     @CreationTimestamp
     private LocalDate fechaMedicion;
 

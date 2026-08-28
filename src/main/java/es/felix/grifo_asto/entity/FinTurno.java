@@ -28,7 +28,7 @@ public class FinTurno {
     @Column(name="observaciones", length = 250)
     private String observaciones;
 
-    @Column(name = "fecha_entrada",updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "fecha_entrada", updatable = false, columnDefinition = "DATE DEFAULT CURRENT_DATE")
     @CreationTimestamp
     private LocalDate fechaEntrada;
 

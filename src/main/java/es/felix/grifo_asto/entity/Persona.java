@@ -47,7 +47,7 @@ public class Persona {
             name = "fecha_create",
             updatable = false,
             insertable = false,   // 👈 IMPORTANTE
-            columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+            columnDefinition = "DATE DEFAULT CURRENT_DATE"
     )
     @CreationTimestamp
     private LocalDate fechaCreate;
