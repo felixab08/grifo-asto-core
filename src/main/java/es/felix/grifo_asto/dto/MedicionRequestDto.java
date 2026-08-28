@@ -4,7 +4,7 @@ import es.felix.grifo_asto.entity.Persona;
 import lombok.Getter;
 import lombok.NonNull;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 @Getter
@@ -12,7 +12,7 @@ public class MedicionRequestDto {
     Persona idpersona;
 
     @NonNull
-    Date fechaMedicion;
+    LocalDate fechaMedicion;
     Double diesel;
     Double regular;
     Double premiun;

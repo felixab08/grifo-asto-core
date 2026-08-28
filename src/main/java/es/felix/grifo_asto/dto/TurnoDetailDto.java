@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -12,8 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 public class TurnoDetailDto {
     private Long idTurno;
-    private Date fecha_entrada;
-    private Date fecha_salida;
+    private LocalDate fecha_entrada;
+    private LocalDate fecha_salida;
     private List<MedidaDto> medidas;
     private String observaciones;
     private Double sum;

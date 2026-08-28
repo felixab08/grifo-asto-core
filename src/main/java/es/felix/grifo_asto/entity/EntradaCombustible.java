@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -26,7 +26,7 @@ public class EntradaCombustible {
     private Integer cantidad;
 
     @Column(name = "fecha_entrada")
-    private Date fechaEntrada;
+    private LocalDate fechaEntrada;
 
     @ManyToOne
     @JoinColumn(name="id_persona", referencedColumnName = "idPersona")

@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -15,8 +15,8 @@ import java.util.Date;
 public class FinTurnoDto {
     Long idTurno;
     String observaciones;
-    Date fechaEntrada;
-    Date fechaSalida;
+    LocalDate fechaEntrada;
+    LocalDate fechaSalida;
     Persona persona;
     Double sum;
     Double rest;

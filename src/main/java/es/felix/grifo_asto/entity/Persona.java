@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -50,9 +50,9 @@ public class Persona {
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
     )
     @CreationTimestamp
-    private Date fechaCreate;
+    private LocalDate fechaCreate;
 
-    public Persona(Long idPersona, String nombre, String apellido, String telefono, Date fechaCreate) {
+    public Persona(Long idPersona, String nombre, String apellido, String telefono, LocalDate fechaCreate) {
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.apellido = apellido;

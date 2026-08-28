@@ -20,7 +20,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -79,12 +78,8 @@ public class FinTurnoServiceImpl implements FinTurnoService {
             LocalDate startDate = LocalDate.of(year, month, 1);
             LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
             
-            // Convertir a Date
-            Date start = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            Date end = Date.from(endDate.atTime(23, 59, 59).atZone(ZoneId.systemDefault()).toInstant());
-            
             // Buscar registros del mes
-            List<RegistroMedidor> registros = registroMedidorRepository.findByIdTurno_FechaEntradaBetween(start, end);
+            List<RegistroMedidor> registros = registroMedidorRepository.findByIdTurno_FechaEntradaBetween(startDate, endDate);
             
             // Calcular suma de salidas menos entradas
             double totalMes = registros.stream()

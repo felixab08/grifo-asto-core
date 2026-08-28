@@ -10,7 +10,7 @@ import lombok.Setter;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Getter
@@ -30,10 +30,10 @@ public class FinTurno {
 
     @Column(name = "fecha_entrada",updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @CreationTimestamp
-    private Date fechaEntrada;
+    private LocalDate fechaEntrada;
 
     @Column(name = "fecha_salida")
-    private Date fechaSalida;
+    private LocalDate fechaSalida;
 
     @Column(name = "sum")
     private Double sum;

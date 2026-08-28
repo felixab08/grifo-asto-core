@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -26,7 +26,7 @@ public class Medicion {
 
     @Column(name = "fecha_medicion",updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @CreationTimestamp
-    private Date fechaMedicion;
+    private LocalDate fechaMedicion;
 
     @Column(name = "diesel")
     private Double diesel;
@@ -39,7 +39,7 @@ public class Medicion {
     @Column(name = "premiun")
     private Double premiun;
 
-    public Medicion(Persona idPersona, Date fechaMedicion, Double diesel, Double regular, Double premiun) {
+    public Medicion(Persona idPersona, LocalDate fechaMedicion, Double diesel, Double regular, Double premiun) {
         this.idPersona = idPersona;
         this.fechaMedicion = fechaMedicion;
         this.diesel = diesel;
