@@ -33,7 +33,7 @@ public class FinTurnoController {
     @GetMapping("/list/{idPersona}")
     public ResponseEntity<FinTurnoResponse> getFinTurnosByPersona(
             @PathVariable Long idPersona,
-            @PageableDefault(size = 10, sort = "fechaEntrada", direction = Sort.Direction.DESC) Pageable pageable) {
+            @PageableDefault(size = 10, sort = "fechaSalida", direction = Sort.Direction.DESC) Pageable pageable) {
         FinTurnoResponse response = finTurnoService.getFinTurnosByPersona(idPersona, pageable);
         return ResponseEntity.ok(response);
     }
