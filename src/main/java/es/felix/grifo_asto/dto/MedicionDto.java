@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class MedicionDto {
     Long idMedicion;
     Persona idpersona;
-    LocalDate fechaMedicion;
+    LocalDateTime fechaMedicion;
     Double diesel;
     Double regular;
     Double premiun;

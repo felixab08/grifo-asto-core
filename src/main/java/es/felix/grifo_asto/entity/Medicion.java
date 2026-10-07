@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -23,8 +23,8 @@ public class Medicion {
    @JoinColumn(name = "idpersona", nullable = false)
     private Persona idPersona;
 
-    @Column(name = "fecha_medicion", updatable = false, columnDefinition = "DATE DEFAULT CURRENT_DATE")
-    private LocalDate fechaMedicion;
+    @Column(name = "fecha_medicion")
+    private LocalDateTime fechaMedicion;
 
     @Column(name = "diesel")
     private Double diesel;
@@ -37,7 +37,7 @@ public class Medicion {
     @Column(name = "premiun")
     private Double premiun;
 
-    public Medicion(Persona idPersona, LocalDate fechaMedicion, Double diesel, Double regular, Double premiun) {
+    public Medicion(Persona idPersona, LocalDateTime fechaMedicion, Double diesel, Double regular, Double premiun) {
         this.idPersona = idPersona;
         this.fechaMedicion = fechaMedicion;
         this.diesel = diesel;
